@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/02/16 15:02:02 by mbartos          ###   ########.fr        #
+#    Updated: 2024/02/20 14:48:44 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ NAME =		phonebook
 
 #compiler
 CCP =		c++
-CFLAGS =	-Wall -Wextra -Werror
+# CFLAGS =	-Wall -Wextra -Werror
 # CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
-SRC = 	phonebook.cpp
+SRC = 	PhoneBook.cpp main.cpp
 
 #objects
 OBJ_PATH =	obj/
