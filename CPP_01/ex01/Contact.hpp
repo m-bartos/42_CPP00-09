@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 14:27:30 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:21:42 by mbartos          ###   ########.fr       */
+/*   Created: 2024/02/21 11:18:52 by mbartos           #+#    #+#             */
+/*   Updated: 2024/02/21 11:20:41 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include "Contact.hpp"
 
-class PhoneBook {
+class Contact {
 
 public:
-	Contact	contacts[8];
-	int		contactCount;
-
-	PhoneBook();
-	~PhoneBook();
-	void searchContact() const;
-	void addContact(Contact newContact);
-
+	
+	Contact();
+	Contact(int phoneNumber, std::string firstName, std::string lastName, std::string nickName, std::string darkestSecret);
+	~Contact();
+	std::string getFirstName() const;
+	std::string getLastName() const;
+	std::string getNickname() const;
 
 private:
-	std::string truncateString(const std::string& str) const;
+	int phoneNumber;
+	std::string firstName;
+	std::string lastName;
+	std::string nickName;
+	std::string darkestSecret;
+
 };
 
 #endif

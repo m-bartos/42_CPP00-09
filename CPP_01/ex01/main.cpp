@@ -6,22 +6,22 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:39:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/20 15:03:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 11:23:54 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 int	main () {
 
-	PhoneBook adresar;
-	std::string command;
-	int phoneNumber;
-	std::string firstName;
-	std::string lastName;
-	std::string nickName;
-	std::string darkestSecret;
+	PhoneBook	adresar;
+	std::string	command;
+	int			phoneNumber;
+	std::string	firstName;
+	std::string	lastName;
+	std::string	nickName;
+	std::string	darkestSecret;
 	
 	while (command != "EXIT")
 	{
@@ -31,7 +31,7 @@ int	main () {
 		{
 			break;
 		}
-		if (command == "ADD")
+		else if (command == "ADD")
 		{
 			std::cout << "Enter phone number: " << std::endl;
 			std::cin >> phoneNumber;
@@ -43,8 +43,17 @@ int	main () {
 			std::cin >> nickName;
 			std::cout << "Enter darkest secret: " << std::endl;
 			std::cin >> darkestSecret;
+			adresar.addContact(Contact(phoneNumber, firstName, lastName, nickName, darkestSecret));
 		}
-		Contact firstContact (phoneNumber, firstContact, lastName, nickName, darkestSecret);
+		else if (command == "SEARCH")
+		{
+			std::cout << "Searching..." << std::endl;
+			adresar.searchContact();
+		}
+		else
+		{
+			std::cout << "Invalid command." << std::endl;
+		}
 	}
 	return (0);
 }
