@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:30 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:21:42 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 20:21:27 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class PhoneBook {
 public:
 	Contact	contacts[8];
 	int		contactCount;
+	int		oldestContact;
 
 	PhoneBook();
 	~PhoneBook();

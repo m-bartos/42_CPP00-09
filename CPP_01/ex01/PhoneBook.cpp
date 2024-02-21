@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:33 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:28:56 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 20:26:56 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 	PhoneBook::PhoneBook() {
 		contactCount = 0;
+		oldestContact = 0;
 		// std::cout << "Phonebook created." << std::endl;
 	};
 
@@ -43,7 +44,15 @@
     }
 
 	void PhoneBook::addContact(Contact newContact) {
-		this->contacts[this->contactCount] = newContact;
-		this->contactCount++;
+		// add if contactCount < 8 otherwise change one to another
+		if (this->contactCount < 8)
+		{
+			this->contacts[this->contactCount] = newContact;
+			this->contactCount++;
+		}
+		else
+		{
+			this->contacts[this->oldestContact] = newContact;
+			this->oldestContact = (this->oldestContact + 1) % 8;
+		}
 	};
-	
