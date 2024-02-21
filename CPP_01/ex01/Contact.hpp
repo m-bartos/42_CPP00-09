@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:18:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:20:41 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 21:03:08 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@ class Contact {
 public:
 	
 	Contact();
-	Contact(int phoneNumber, std::string firstName, std::string lastName, std::string nickName, std::string darkestSecret);
+	Contact(long long phoneNumber, std::string firstName, std::string lastName, std::string nickName, std::string darkestSecret);
 	~Contact();
+	void displayContact() const;
+	long long getPhoneNumber() const;
 	std::string getFirstName() const;
 	std::string getLastName() const;
 	std::string getNickname() const;
+	std::string getDarkestSecret() const;
 
 private:
-	int phoneNumber;
+	long long phoneNumber;
 	std::string firstName;
 	std::string lastName;
 	std::string nickName;
