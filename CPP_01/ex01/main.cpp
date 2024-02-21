@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:39:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 21:13:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 21:34:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	main () {
 
-	PhoneBook	adresar;
+	PhoneBook	phoneBook;
 	std::string	command;
 	long long	phoneNumber;
 	std::string	firstName;
@@ -24,13 +24,15 @@ int	main () {
 	std::string	nickName;
 	std::string	darkestSecret;
 	
+	std::cout << "-------------------------------------" << std::endl;
+	std::cout << "--------------Phonebook--------------" << std::endl;
+	std::cout << "-------------------------------------" << std::endl;
+
 	while (command != "EXIT")
 	{
 		std::cout << "What you want to do? Type ADD/SEARCH/EXIT" << std::endl;
 		std::cin >> command;
-		if (command == "EXIT")
-			break;
-		else if (command == "ADD")
+		if (command == "ADD")
 		{
 			// saved contact cannot have empty fields!
 			std::cout << "Enter phone number: " << std::endl;
@@ -50,13 +52,12 @@ int	main () {
 			std::cin >> nickName;
 			std::cout << "Enter darkest secret: " << std::endl;
 			std::cin >> darkestSecret;
-			adresar.addContact(Contact(phoneNumber, firstName, lastName, nickName, darkestSecret));
+			phoneBook.addContact(Contact(phoneNumber, firstName, lastName, nickName, darkestSecret));
 		}
 		else if (command == "SEARCH")
-		{
-			std::cout << "Searching..." << std::endl;
-			adresar.searchContact();
-		}
+			phoneBook.searchContact();
+		else if (command == "EXIT")
+			break;
 		else
 			std::cout << "Invalid command." << std::endl;
 	}
