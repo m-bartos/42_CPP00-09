@@ -6,18 +6,19 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:39:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 11:23:54 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 21:13:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+#include <limits>
 
 int	main () {
 
 	PhoneBook	adresar;
 	std::string	command;
-	int			phoneNumber;
+	long long	phoneNumber;
 	std::string	firstName;
 	std::string	lastName;
 	std::string	nickName;
@@ -28,13 +29,19 @@ int	main () {
 		std::cout << "What you want to do? Type ADD/SEARCH/EXIT" << std::endl;
 		std::cin >> command;
 		if (command == "EXIT")
-		{
 			break;
-		}
 		else if (command == "ADD")
 		{
+			// saved contact cannot have empty fields!
 			std::cout << "Enter phone number: " << std::endl;
 			std::cin >> phoneNumber;
+			while (std::cin.fail())
+			{
+				std::cout << "Invalid input. Please enter a valid long long number: " << std::endl;
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin >> phoneNumber;
+			}
 			std::cout << "Enter first name: " << std::endl;
 			std::cin >> firstName;
 			std::cout << "Enter last name: " << std::endl;
@@ -51,9 +58,7 @@ int	main () {
 			adresar.searchContact();
 		}
 		else
-		{
 			std::cout << "Invalid command." << std::endl;
-		}
 	}
 	return (0);
 }
