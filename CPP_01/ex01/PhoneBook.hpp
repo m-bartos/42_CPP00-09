@@ -6,40 +6,32 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:30 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/20 15:03:43 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/21 21:23:15 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include "Contact.hpp"
 
 class PhoneBook {
 
 public:
-	
 	PhoneBook();
 	~PhoneBook();
+	void searchContact() const;
+	void addContact(Contact newContact);
+
 
 private:
-
-	int nContants;
+	Contact	contacts[8];
+	int		contactCount;
+	int		oldestContact;
+	std::string truncateString(const std::string& str) const;
 };
-
-class Contact {
-
-public:
-	
-	// Contact();
-	Contact(int phoneNumber, std::string firstName, std::string lastName, std::string nickName, std::string darkestSecret);
-	~Contact();
-
-private:
-	int phoneNumber;
-	std::string firstName;
-	std::string lastName;
-	std::string nickName;
-	std::string darkestSecret;
-};
-
 
 #endif
