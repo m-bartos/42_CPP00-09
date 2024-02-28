@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:20:20 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 21:02:48 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/02/28 11:07:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 		// std::cout << "Contact deleted." << std::endl;
 	};
 
-	long long	Contact::getPhoneNumber() const { return phoneNumber; };
+	long long	Contact::getPhoneNumber() const { return phoneNumber; }; // change it to string and check if it's a number
 	std::string	Contact::getFirstName() const { return firstName; };
 	std::string	Contact::getLastName() const { return lastName; };
 	std::string	Contact::getNickname() const { return nickName; };
