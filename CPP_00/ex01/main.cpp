@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:39:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 21:34:44 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/04/03 10:03:58 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,28 @@
 #include "Contact.hpp"
 #include <limits>
 
+bool	isValidPhoneNumber(std::string phoneNumber)
+{
+	int	i;
+
+	i = 0;
+	if (phoneNumber[i] == '+')
+		i++;
+	while (phoneNumber[i])
+	{
+		if (phoneNumber[i] >= '0' && phoneNumber[i] <= '9')
+			i++;
+		else
+			return (false);
+	}
+	return (true);
+}
+
 int	main () {
 
 	PhoneBook	phoneBook;
 	std::string	command;
-	long long	phoneNumber;
+	std::string	phoneNumber;
 	std::string	firstName;
 	std::string	lastName;
 	std::string	nickName;
@@ -37,9 +54,10 @@ int	main () {
 			// saved contact cannot have empty fields!
 			std::cout << "Enter phone number: " << std::endl;
 			std::cin >> phoneNumber;
-			while (std::cin.fail())
+			// Check if it is a valid number - + at the beggining and then just numbers
+			while (!isValidPhoneNumber(phoneNumber))
 			{
-				std::cout << "Invalid input. Please enter a valid long long number: " << std::endl;
+				std::cout << "Invalid input. Please enter a valid phone number: " << std::endl;
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				std::cin >> phoneNumber;

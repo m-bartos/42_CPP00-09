@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:33 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/21 21:12:14 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/04/03 09:30:12 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,14 @@
 			else
 				std::cout << "Invalid index. Please try again." << std::endl;
 		}
-
 		contacts[index].displayContact();
-    }
+	}
 
-    std::string PhoneBook::truncateString(const std::string& str) const {
-        if (str.length() > 10)
-            return (str.substr(0, 9) + ".");
-        return (str);
-    }
+	std::string PhoneBook::truncateString(const std::string& str) const {
+		if (str.length() > 10)
+			return (str.substr(0, 9) + ".");
+		return (str);
+	}
 
 	void PhoneBook::addContact(Contact newContact) {
 		if (this->contactCount < 8)
