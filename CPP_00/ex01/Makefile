@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/02/21 20:28:05 by mbartos          ###   ########.fr        #
+#    Updated: 2024/05/06 15:32:08 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME =		phonebook
 
 #compiler
 CCP =		c++
-# CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror
 # CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
