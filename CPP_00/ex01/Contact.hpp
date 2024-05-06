@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:18:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/04/03 09:33:24 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/06 11:46:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 class Contact {
 
 public:
-	
 	Contact();
 	Contact(std::string phoneNumber, std::string firstName, std::string lastName, std::string nickName, std::string darkestSecret);
 	~Contact();
@@ -38,7 +37,6 @@ private:
 	std::string lastName;
 	std::string nickName;
 	std::string darkestSecret;
-
 };
 
 #endif
