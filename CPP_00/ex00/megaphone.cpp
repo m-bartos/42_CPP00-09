@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:40:41 by mbartos           #+#    #+#             */
-/*   Updated: 2024/02/16 13:48:54 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/06 11:35:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv) {
 	
 	if (argc >= 2)
 	{
+		// for each string in **argv, upper the string letter by letter and print it afterwards
 		for (int i = 1; i < argc; i++)
 		{
 			str = argv[i];
