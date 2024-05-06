@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:33 by mbartos           #+#    #+#             */
-/*   Updated: 2024/04/03 09:30:12 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/06 11:45:49 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@
 		// std::cout << "Phonebook destroyed." << std::endl;
 	};
 
-    void PhoneBook::searchContact() const {
-        std::cout << "|" 
-				  << std::setw(10) << std::right << "Index" << "|"
-                  << std::setw(10) << std::right << "First Name" << "|"
-                  << std::setw(10) << std::right << "Last Name" << "|"
-                  << std::setw(10) << std::right << "Nickname" << "|" << std::endl;
-        
-        for (size_t i = 0; i < contactCount; ++i)
+	void PhoneBook::searchContact() const {
+		std::cout	<< "|" 
+					<< std::setw(10) << std::right << "Index" << "|"
+					<< std::setw(10) << std::right << "First Name" << "|"
+					<< std::setw(10) << std::right << "Last Name" << "|"
+					<< std::setw(10) << std::right << "Nickname" << "|" << std::endl;
+		for (int i = 0; i < contactCount; ++i)
 		{
-            std::cout << "|" 
-					  << std::setw(10) << std::right << i << "|"
-                      << std::setw(10) << std::right << truncateString(contacts[i].getFirstName()) << "|"
-                      << std::setw(10) << std::right << truncateString(contacts[i].getLastName()) << "|"
-                      << std::setw(10) << std::right << truncateString(contacts[i].getNickname()) << "|" << std::endl;
-        }
-		size_t index;
+			std::cout	<< "|" 
+						<< std::setw(10) << std::right << i << "|"
+						<< std::setw(10) << std::right << truncateString(contacts[i].getFirstName()) << "|"
+						<< std::setw(10) << std::right << truncateString(contacts[i].getLastName()) << "|"
+						<< std::setw(10) << std::right << truncateString(contacts[i].getNickname()) << "|" << std::endl;
+		}
+
+		int index;
 		bool validIndex = false;
 		while (!validIndex)
 		{
