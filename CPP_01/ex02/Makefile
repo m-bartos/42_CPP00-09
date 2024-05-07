@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/05/07 09:48:46 by mbartos          ###   ########.fr        #
+#    Updated: 2024/05/07 11:15:38 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ NAME =		zombies
 
 #compiler
 CCP =		c++
-# CFLAGS =	-Wall -Wextra -Werror
-# CFLAGS =	-Wall -Weextra -Werror -std=c++98
+CFLAGS =	-Wall -Wextra -Werror
+# CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
 SRC = 	main.cpp
