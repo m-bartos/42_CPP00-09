@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 14:41:18 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/07 15:57:41 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:11:23 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,24 @@ void replaceWords(std::ifstream& inputFile, std::ofstream& outputFile, std::stri
 
 int main(int argc, char **argv) {
 	if (argc == 4) {
-		std::ifstream	inputFile(argv[1]); // Open the input file
+		std::ifstream	inputFile;
+		inputFile.open(argv[1]); // Open the input file
 		if(!inputFile.is_open()) {
 			std::cout << "ERROR: Failed to open infile." << std::endl;
-			return (EXIT_FAILURE);
+			return (1);
 		}
 
-		std::string		outFileName = std::string(argv[1]) + ".replace";
-		std::ofstream	outputFile(outFileName); // Create or overwrite the output file
+		// Making new name for outFileName by appending ".replace"
+		std::string	outFileName = std::string(argv[1]) + ".replace";
+		// Has to convert the outFileName to char* because of .open() function - cannot handle strings
+		const char	*outFileNameChar = outFileName.c_str();
+		
+		std::ofstream	outputFile;
+		outputFile.open(outFileNameChar); // Create or overwrite the output file
 		if(!outputFile.is_open()) {
 			std::cout << "ERROR: Failed to open outfile." << std::endl;
 			inputFile.close();
-			return (EXIT_FAILURE);
+			return (2);
 		}
 
 		std::string		searchWord = argv[2]; 
@@ -51,7 +57,7 @@ int main(int argc, char **argv) {
 			inputFile.close();
 			outputFile.close();
 			std::cout << "ERROR: Word to find cannot be empty!" << std::endl;
-			return (EXIT_FAILURE);
+			return (3);
 		}
 
 		std::string		replaceWord = argv[3]; 
@@ -62,9 +68,9 @@ int main(int argc, char **argv) {
 		outputFile.close();
 
 		std::cout << "All words \""<< argv[2] <<"\" were replaced successfully by \"" << argv[3] << "\" in file \""
-				  << argv[1] << "\" to new file \"" << outFileName << "\"." << std::endl;
-		return (EXIT_SUCCESS);
+				  << argv[1] << "\" to new file \"" << outFileNameChar << "\"." << std::endl;
+		return (0);
 	}
 	std::cout << "ERROR: Correct syntax is \"./sed_is_for_losers <filename> <word_to_find> <replace_with>\"" << std::endl;
-	return (EXIT_FAILURE);
+	return (99);
 }
