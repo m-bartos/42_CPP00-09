@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
 		std::ifstream	inputFile;
 		inputFile.open(argv[1]); // Open the input file
 		if(!inputFile.is_open()) {
-			std::cout << "ERROR: Failed to open infile." << std::endl;
+			std::cerr << "ERROR: Failed to open infile." << std::endl;
 			return (1);
 		}
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
 		std::ofstream	outputFile;
 		outputFile.open(outFileNameChar); // Create or overwrite the output file
 		if(!outputFile.is_open()) {
-			std::cout << "ERROR: Failed to open outfile." << std::endl;
+			std::cerr << "ERROR: Failed to open outfile." << std::endl;
 			inputFile.close();
 			return (2);
 		}
@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 		if (searchWord == "") {
 			inputFile.close();
 			outputFile.close();
-			std::cout << "ERROR: Word to find cannot be empty!" << std::endl;
+			std::cerr << "ERROR: Word to find cannot be empty!" << std::endl;
 			return (3);
 		}
 
@@ -71,6 +71,6 @@ int main(int argc, char **argv) {
 				  << argv[1] << "\" to new file \"" << outFileNameChar << "\"." << std::endl;
 		return (0);
 	}
-	std::cout << "ERROR: Correct syntax is \"./sed_is_for_losers <filename> <word_to_find> <replace_with>\"" << std::endl;
+	std::cerr << "ERROR: Correct syntax is \"./sed_is_for_losers <filename> <word_to_find> <replace_with>\"" << std::endl;
 	return (99);
 }
