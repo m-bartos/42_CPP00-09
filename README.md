@@ -43,6 +43,6 @@ Memory allocation, pointers to members, references, switch statement.
   - The goal of this exercise is to use pointers to member functions.
   - [pointers to member function](https://public.websites.umich.edu/~eecs381/handouts/Pointers_to_memberfuncs.pdf)
  
- * ex06 - Harl filter
+* ex06 - Harl filter
   - The goal of this exercise is to use pointers to member functions and switch statement.
   - pointer to member function, switch
