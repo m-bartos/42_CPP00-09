@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:35 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/13 12:39:26 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/16 11:13:06 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ class	Fixed {
 
 public:
 	Fixed();
-	// A copy constructor is used to initialize a previously uninitialized object from some other object's data.
 	Fixed(const int intNumber);
 	Fixed(const float floatNumber);
+	// A copy constructor is used to initialize a previously uninitialized object from some other object's data.
 	Fixed(const Fixed&);
 	// An assignment operator is used to replace the data of a previously initialized object with some other object's data.
 	Fixed& operator=(const Fixed&);
