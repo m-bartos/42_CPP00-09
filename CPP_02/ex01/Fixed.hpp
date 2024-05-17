@@ -6,9 +6,12 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:35 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/16 11:13:06 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:40:38 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 #include <cmath>
@@ -37,3 +40,5 @@ private:
 };
 
 std::ostream& operator<<(std::ostream &outputStream, const Fixed &fixedNb);
+
+#endif

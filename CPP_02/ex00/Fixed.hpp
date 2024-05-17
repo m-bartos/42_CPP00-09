@@ -6,9 +6,12 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:35 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/09 11:40:01 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:40:48 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef FIXED_HPP
+# define FIXED_HPP
 
 #include <iostream>
 
@@ -31,3 +34,5 @@ private:
 	static const int FRACTIONALBITS = 8;
 	
 };
+
+#endif
