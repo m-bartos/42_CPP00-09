@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/05/09 09:26:58 by mbartos          ###   ########.fr        #
+#    Updated: 2024/05/19 16:38:58 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS =	-Wall -Wextra -Werror
 # CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
-SRC = 	main.cpp Fixed.cpp
+SRC = 	main.cpp Fixed.cpp Point.cpp BSP.cpp
 
 #objects
 OBJ_PATH =	obj/
