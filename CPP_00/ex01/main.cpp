@@ -49,11 +49,22 @@ int	main () {
 	{
 		std::cout << "What you want to do? Type ADD/SEARCH/EXIT" << std::endl;
 		std::cin >> command;
+		if (std::cin.eof())
+		{
+			std::cout << std::endl;
+			exit(1);
+		}
 		if (command == "ADD")
 		{
 			// saved contact cannot have empty fields!
 			std::cout << "Enter phone number: " << std::endl;
 			std::cin >> phoneNumber;
+			// Check for EOF (CTRL+D)
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			// Check if it is a valid number - + at the beggining and then just numbers
 			while (!isValidPhoneNumber(phoneNumber))
 			{
@@ -64,12 +75,32 @@ int	main () {
 			}
 			std::cout << "Enter first name: " << std::endl;
 			std::cin >> firstName;
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			std::cout << "Enter last name: " << std::endl;
 			std::cin >> lastName;
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			std::cout << "Enter nickname: " << std::endl;
 			std::cin >> nickName;
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			std::cout << "Enter darkest secret: " << std::endl;
 			std::cin >> darkestSecret;
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			phoneBook.addContact(Contact(phoneNumber, firstName, lastName, nickName, darkestSecret));
 		}
 		else if (command == "SEARCH")

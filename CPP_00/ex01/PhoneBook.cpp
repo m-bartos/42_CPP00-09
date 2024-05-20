@@ -44,6 +44,11 @@
 		{
 			std::cout << "Please enter a valid index or -1 to get back to main menu: " << std::endl;
 			std::cin >> index;
+			if (std::cin.eof())
+			{
+				std::cout << std::endl;
+				exit(1);
+			}
 			if (std::cin.fail()) {
 				std::cin.clear(); // Clear the error state
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the invalid input
