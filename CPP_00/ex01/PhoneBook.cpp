@@ -36,19 +36,27 @@
 						<< std::setw(10) << std::right << truncateString(contacts[i].getLastName()) << "|"
 						<< std::setw(10) << std::right << truncateString(contacts[i].getNickname()) << "|" << std::endl;
 		}
+		std::cout << std::endl;
 
 		int index;
 		bool validIndex = false;
 		while (!validIndex)
 		{
-			std::cout << "Enter index of contact to display: " << std::endl;
+			std::cout << "Please enter a valid index or -1 to get back to main menu: " << std::endl;
 			std::cin >> index;
-			if (index >= 0 && index < contactCount)
+			if (std::cin.fail()) {
+				std::cin.clear(); // Clear the error state
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the invalid input
+				std::cout << "Invalid input.\n" << std::endl;
+			}
+			else if ((index >= 0 && index < contactCount) || index == -1)
 				validIndex = true;
 			else
-				std::cout << "Invalid index. Please try again." << std::endl;
+				std::cout << "Invalid index.\n" << std::endl;
 		}
-		contacts[index].displayContact();
+		if (index != -1)
+			contacts[index].displayContact();
+		std::cout << std::endl;
 	}
 
 	std::string PhoneBook::truncateString(const std::string& str) const {
