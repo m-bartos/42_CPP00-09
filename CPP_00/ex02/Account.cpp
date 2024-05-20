@@ -12,6 +12,7 @@
 
 #include "Account.hpp"
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 
 int Account::_nbAccounts = 0;
@@ -93,5 +94,10 @@ int Account::checkAmount (void) const {
 void Account::_displayTimestamp (void) {
 	std::time_t t = std::time(0);
 	std::tm* now = std::localtime(&t);
-	std::cout << "[" << now->tm_year + 1900 << now->tm_mon + 1 << now->tm_mday << "_" << now->tm_hour << now->tm_min << now->tm_sec << "]";
+	std::cout << "[" << now->tm_year + 1900	
+		<< std::setfill('0') << std::setw(2) << now->tm_mon + 1
+		<< std::setfill('0') << std::setw(2) << now->tm_mday << "_"
+		<< std::setfill('0') << std::setw(2) << now->tm_hour
+		<< std::setfill('0') << std::setw(2) << now->tm_min
+		<< std::setfill('0') << std::setw(2) << now->tm_sec << "]";
 };
