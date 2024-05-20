@@ -21,8 +21,7 @@ NAME =		account
 
 #compiler
 CCP =		c++
-CFLAGS =	-Wall -Wextra -Werror
-# CFLAGS =	-Wall -Wextra -Werror -std=c++98
+CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
 SRC = Account.cpp tests.cpp
