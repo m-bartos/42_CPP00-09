@@ -29,7 +29,7 @@
 		// std::cout << "Contact deleted." << std::endl;
 	};
 
-	std::string	Contact::getPhoneNumber() const { return phoneNumber; }; // change it to string and check if it's a number
+	std::string	Contact::getPhoneNumber() const { return phoneNumber; };
 	std::string	Contact::getFirstName() const { return firstName; };
 	std::string	Contact::getLastName() const { return lastName; };
 	std::string	Contact::getNickname() const { return nickName; };
