@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 11:18:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/06 11:46:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:21:47 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ public:
 	std::string getLastName() const;
 	std::string getNickname() const;
 	std::string getDarkestSecret() const;
+	static bool isValidPhoneNumber(std::string phoneNumber);
 
 private:
 	std::string phoneNumber;
