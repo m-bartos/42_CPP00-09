@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:39:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/21 13:30:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:34:22 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ int	main () {
 	std::cout << "-------------------------------------" << std::endl;
 	std::cout << RESET;
 
-	while (command != "EXIT")
-	{
+	while (command != "EXIT") {
 		std::cout << std::endl;
 		std::cout << BOLD << "What you want to do? Type ADD/SEARCH/EXIT" << RESET << std::endl;
 		std::getline(std::cin, command);
 		if (PhoneBook::IsEofOrFail())
 			return (1);
-		if (command == "ADD")
-		{
+		if (command == "ADD") {
 			if (phoneBook.tryToAddContact() == 1)
 				return (1);
 		}
-		else if (command == "SEARCH")
-			phoneBook.searchContact();
+		else if (command == "SEARCH") {
+			if (phoneBook.searchContact() == 1)
+				return (1);
+		}
 		else if (command == "EXIT")
 			break ;
 		else

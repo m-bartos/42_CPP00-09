@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:33 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/21 13:29:13 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:36:01 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ PhoneBook::~PhoneBook() {
 	// std::cout << "Phonebook destroyed." << std::endl;
 };
 
-void	PhoneBook::searchContact() const {
+int	PhoneBook::searchContact() const {
 	std::cout<<std::endl;
 	std::cout	<< BOLD <<"|" 
 				<< std::setw(10) << std::right << "Index" << "|"
 				<< std::setw(10) << std::right << "First Name" << "|"
 				<< std::setw(10) << std::right << "Last Name" << "|"
 				<< std::setw(10) << std::right << "Nickname" << "|" << RESET << std::endl;
-	for (int i = 0; i < contactCount; ++i)
-	{
+	for (int i = 0; i < contactCount; ++i) {
 		std::cout	<< "|" 
 					<< std::setw(10) << std::right << i << "|"
 					<< std::setw(10) << std::right << truncateString(contacts[i].getFirstName()) << "|"
@@ -45,12 +44,11 @@ void	PhoneBook::searchContact() const {
 	{
 		std::cout << "Please enter a valid index or -1 to get back to main menu: " << std::endl;
 		std::cin >> index;
-		if (std::cin.eof())
-		{
+		if (std::cin.eof()) {
 			std::cout << std::endl;
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			exit(1);
+			return (1);
 		}
 		if (std::cin.fail()) {
 			std::cin.clear();
@@ -66,6 +64,7 @@ void	PhoneBook::searchContact() const {
 		contacts[index].displayContact();
 	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return (0);
 }
 
 std::string PhoneBook::truncateString(const std::string& str) const {
@@ -86,8 +85,7 @@ int	PhoneBook::tryToAddContact() {
 	std::getline(std::cin, phoneNumber);
 	if (PhoneBook::IsEofOrFail())
 		return (1);
-	while (!Contact::isValidPhoneNumber(phoneNumber))
-	{
+	while (!Contact::isValidPhoneNumber(phoneNumber)) {
 		std::cout << "Invalid input. Please enter a valid phone number: " << std::endl;
 		std::getline(std::cin, phoneNumber);
 		if (PhoneBook::IsEofOrFail())
@@ -115,8 +113,7 @@ int	PhoneBook::tryToAddContact() {
 }
 
 int	PhoneBook::IsEofOrFail() {
-	if (std::cin.eof() || std::cin.fail())
-	{
+	if (std::cin.eof() || std::cin.fail()) {
 		std::cout << std::endl;
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max());
@@ -126,13 +123,11 @@ int	PhoneBook::IsEofOrFail() {
 }
 
 void	PhoneBook::addContact(Contact newContact) {
-	if (this->contactCount < 8)
-	{
+	if (this->contactCount < 8) {
 		this->contacts[this->contactCount] = newContact;
 		this->contactCount++;
 	}
-	else
-	{
+	else {
 		this->contacts[this->oldestContact] = newContact;
 		this->oldestContact = (this->oldestContact + 1) % 8;
 	}

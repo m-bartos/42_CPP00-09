@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:27:30 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/21 13:26:50 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/21 13:33:30 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PhoneBook {
 public:
 	PhoneBook();
 	~PhoneBook();
-	void searchContact() const;
+	int searchContact() const;
 	int	tryToAddContact();
 	static int	IsEofOrFail();
 
