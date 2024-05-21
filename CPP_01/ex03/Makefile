@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/05/07 14:30:59 by mbartos          ###   ########.fr        #
+#    Updated: 2024/05/21 14:13:16 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ all: $(NAME)
 $(OBJ_PATH)%.o : $(SRC_PATH)%.cpp
 	$(CCP) $(CFLAGS) -c $< $(HEADER) -o $@
 
-$(OBJS): $(OBJ_PATH)
+$(OBJS): | $(OBJ_PATH)
 
 $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)

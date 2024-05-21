@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/05/07 09:48:39 by mbartos          ###   ########.fr        #
+#    Updated: 2024/05/21 14:12:55 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(OBJ_PATH)%.o : %.cpp
 	$(CCP) $(CFLAGS) -c $< -o $@
 	@echo "$(BOLD)$(GREEN)[ Obj files ready! ]$(NC)"
 
-$(OBJS): $(OBJ_PATH)
+$(OBJS): | $(OBJ_PATH)
 
 $(OBJ_PATH):
 	@mkdir $(OBJ_PATH)
