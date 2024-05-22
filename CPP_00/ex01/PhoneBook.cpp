@@ -80,33 +80,42 @@ int	PhoneBook::tryToAddContact() {
 	std::string	nickName;
 	std::string	darkestSecret;
 
-	// saved contact cannot have empty fields!
-	std::cout << "Enter phone number: " << std::endl;
-	std::getline(std::cin, phoneNumber);
-	if (PhoneBook::IsEofOrFail())
-		return (1);
-	while (!Contact::isValidPhoneNumber(phoneNumber)) {
-		std::cout << "Invalid input. Please enter a valid phone number: " << std::endl;
+	do {
+		std::cout << "Enter phone number: " << std::endl;
 		std::getline(std::cin, phoneNumber);
 		if (PhoneBook::IsEofOrFail())
 			return (1);
-	}
-	std::cout << "Enter first name: " << std::endl;
-	std::getline(std::cin, firstName);
-	if (PhoneBook::IsEofOrFail())
-		return (1);
-	std::cout << "Enter last name: " << std::endl;
-	std::getline(std::cin, lastName);
-	if (PhoneBook::IsEofOrFail())
-		return (1);
-	std::cout << "Enter nickname: " << std::endl;
-	std::getline(std::cin, nickName);
-	if (PhoneBook::IsEofOrFail())
-		return (1);
-	std::cout << "Enter darkest secret: " << std::endl;
-	std::getline(std::cin, darkestSecret);
-	if (PhoneBook::IsEofOrFail())
-		return (1);
+		while (!Contact::isValidPhoneNumber(phoneNumber)) {
+			std::cout << "Invalid input. Please enter a valid phone number: " << std::endl;
+			std::getline(std::cin, phoneNumber);
+			if (PhoneBook::IsEofOrFail())
+				return (1);
+		}
+	} while (phoneNumber.empty());
+	do {
+		std::cout << "Enter first name: " << std::endl;
+		std::getline(std::cin, firstName);
+		if (PhoneBook::IsEofOrFail())
+			return (1);
+	} while (firstName.empty());
+	do {
+		std::cout << "Enter last name: " << std::endl;
+		std::getline(std::cin, lastName);
+		if (PhoneBook::IsEofOrFail())
+			return (1);
+	} while (lastName.empty());
+	do {
+		std::cout << "Enter nickname: " << std::endl;
+		std::getline(std::cin, nickName);
+		if (PhoneBook::IsEofOrFail())
+			return (1);
+	} while (nickName.empty());
+	do {
+		std::cout << "Enter darkest secret: " << std::endl;
+		std::getline(std::cin, darkestSecret);
+		if (PhoneBook::IsEofOrFail())
+			return (1);
+	} while (darkestSecret.empty());
 	this->addContact(Contact(phoneNumber, firstName, lastName, nickName, darkestSecret));
 	std::cout << BOLD << "\nContact added successfuly!" << RESET << std::endl;
 	return (0);
