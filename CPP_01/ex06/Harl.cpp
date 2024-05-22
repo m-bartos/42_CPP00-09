@@ -67,11 +67,11 @@ void	Harl::info(void) {
 }
 
 void	Harl::warning(void) {
-	std::cout << "[ WARNING ]\nI think I deserve to have some extra bacon for free. ";
+	std::cout << "[ WARNING ]\nI think I deserve to have some extra bacon for free.\n";
 	std::cout << "I’ve been coming for years whereas you started working here since last month.\n" << std::endl;
 	
 }
 
 void	Harl::error(void) {
-	std::cout << "[ ERROR ]\nThis is unacceptable! I want to speak to the manager now.\n" << std::endl;
+	std::cout << "[ ERROR ]\nThis is unacceptable, I want to speak to the manager now.\n" << std::endl;
 }
