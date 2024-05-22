@@ -21,8 +21,8 @@ NAME =		sed_is_for_losers
 
 #compiler
 CCP =		c++
-CFLAGS =	-Wall -Wextra -Werror
-# CFLAGS =	-Wall -Wextra -Werror -std=c++98
+# CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
 SRC = 	main.cpp
