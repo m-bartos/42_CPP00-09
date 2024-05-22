@@ -18,10 +18,10 @@ HumanA::~HumanA() {
 	std::cout << "Human A called \"" << name << "\" destructed" << std::endl;
 }
 
-void	HumanA::setWeapon(Weapon& newWeapon)
-{
-	weapon = newWeapon;
-}
+// void	HumanA::setWeapon(Weapon& newWeapon)
+// {
+// 	weapon = newWeapon;
+// }
 
 void	HumanA::attack() const {
 	std::cout << name << " attacks with their " << weapon.getType() << std::endl;
