@@ -22,7 +22,7 @@ public:
 	HumanA(std::string newName, Weapon& newWeapon);
 	~HumanA();
 	// setter is not necessary for this ex - just testing how references work
-	void	setWeapon(Weapon& newWeapon);
+	// void	setWeapon(Weapon& newWeapon);
 	void	attack() const;
 
 private:
