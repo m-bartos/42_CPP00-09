@@ -18,7 +18,7 @@ Weapon::~Weapon() {
 	std::cout << "Weapon \"" << type << "\" destructed" << std::endl;
 };
 
-std::string	Weapon::getType() const {
+const std::string&	Weapon::getType() const {
 	return (type);
 }
 
