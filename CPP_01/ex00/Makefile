@@ -35,9 +35,7 @@ OBJS =		$(addprefix $(OBJ_PATH), $(OBJ))
 all: $(NAME)
 
 $(OBJ_PATH)%.o : %.cpp
-	@echo "$(BOLD)$(BCYAN)[ Compiling obj files.. ]$(NC)"
 	$(CCP) $(CFLAGS) -c $< -o $@
-	@echo "$(BOLD)$(GREEN)[ Obj files ready! ]$(NC)"
 
 $(OBJS): | $(OBJ_PATH)
 
