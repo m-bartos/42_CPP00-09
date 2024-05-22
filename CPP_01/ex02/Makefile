@@ -17,7 +17,7 @@ BCYAN =	\033[96m
 NC =	\033[0m
 
 #name
-NAME =		zombies
+NAME =		string_program
 
 #compiler
 CCP =		c++
