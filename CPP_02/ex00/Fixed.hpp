@@ -27,12 +27,9 @@ public:
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 
-	
-
 private:
 	int fixedPointValue;
 	static const int FRACTIONALBITS = 8;
-	
 };
 
 #endif
