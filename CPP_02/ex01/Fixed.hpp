@@ -30,8 +30,8 @@ public:
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
-	float	toFloat() const;
-	int		toInt() const;
+	float	toFloat(void) const;
+	int		toInt(void) const;
 
 private:
 	int fixedPointValue;
