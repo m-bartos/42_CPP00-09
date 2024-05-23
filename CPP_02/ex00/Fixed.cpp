@@ -18,7 +18,7 @@ Fixed::Fixed() : fixedPointValue(0) {
 
 Fixed::Fixed(const Fixed& oldObj) {
 	std::cout << "Copy constructor called" << std::endl;
-	fixedPointValue = oldObj.fixedPointValue;
+	fixedPointValue = oldObj.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed& oldObj) {
