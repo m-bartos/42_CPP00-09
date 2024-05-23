@@ -17,7 +17,7 @@ BCYAN =	\033[96m
 NC =	\033[0m
 
 #name
-NAME =		program
+NAME =		triangle
 
 #compiler
 CCP =		c++
