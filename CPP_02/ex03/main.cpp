@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:11 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/19 18:27:19 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 13:52:53 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int main( void ) {
 	std::cout << std::endl;
 
 	std::cout << "P2, P3, P4, P5 inside triangle:" << std::endl;
-	std::cout << "P2: " << (bsp(a, b, c, P2) ? "in" : "out") << std::endl;
-	std::cout << "P3: " << (bsp(a, b, c, P3) ? "in" : "out") << std::endl;
-	std::cout << "P4: " << (bsp(a, b, c, P4) ? "in" : "out") << std::endl;
-	std::cout << "P5: " << (bsp(a, b, c, P5) ? "in" : "out") << std::endl;
+	std::cout << "P2 should be in: " << (bsp(a, b, c, P2) ? "in" : "out") << std::endl;
+	std::cout << "P3 should be out: " << (bsp(a, b, c, P3) ? "in" : "out") << std::endl;
+	std::cout << "P4 should be out: " << (bsp(a, b, c, P4) ? "in" : "out") << std::endl;
+	std::cout << "P5 should be in: " << (bsp(a, b, c, P5) ? "in" : "out") << std::endl;
 
 	return (0);
 }
