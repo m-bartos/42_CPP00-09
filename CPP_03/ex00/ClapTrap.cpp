@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:04:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/29 10:37:23 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:38:18 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& oldObj) {
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap \"" << this->name << "\" destroyed." << std::endl;
 }
+
+std::string	ClapTrap::getName() {return name;}
+
+int	ClapTrap::getHitPoints() {return hitPoints;}
+
+int	ClapTrap::getEnergyPoints() {return energyPoints;}
+
+int	ClapTrap::getAttackDamage() {return attackDamage;}
 
 void ClapTrap::attack(const std::string& target) {
 	if (this->energyPoints > 0 && this->hitPoints > 0)
