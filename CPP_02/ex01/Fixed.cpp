@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:34 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/13 12:43:21 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 13:35:24 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Fixed::Fixed(const int intNumber) {
 Fixed::Fixed(const float floatNumber) {
 	std::cout << "Float constructor called" << std::endl;
 	// 1. possibility - rounding result float to integer
-	fixedPointValue = std::roundf(floatNumber * (float) (1 << FRACTIONALBITS));
+	fixedPointValue = roundf(floatNumber * (float) (1 << FRACTIONALBITS));
 	// 2. possibility - casting (without rounding)
 	// fixedPointValue = (int) (floatNumber * (float) (1 << FRACTIONALBITS));
 }
