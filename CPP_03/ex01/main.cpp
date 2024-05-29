@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:19:39 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/28 14:18:29 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:46:02 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,61 @@
 #include "ScavTrap.hpp"
 
 int main () {
-	ClapTrap firstClapTrap("First");
+	// ClapTrap firstClapTrap("First");
 
-	std::cout << "--------------------------------" << std::endl;
-	std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
-	std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
-	std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
-	std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
-	std::cout << "--------------------------------" << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
+	// std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
+	// std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
+	// std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
+	// std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
 
-	firstClapTrap.attack("Evaluator");
-	firstClapTrap.takeDamage(4);
-	firstClapTrap.beRepaired(2);
+	// firstClapTrap.attack("Evaluator");
+	// firstClapTrap.takeDamage(4);
+	// firstClapTrap.beRepaired(2);
 
-	std::cout << "--------------------------------" << std::endl;
-	std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
-	std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
-	std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
-	std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
-	std::cout << "--------------------------------" << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
+	// std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
+	// std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
+	// std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
+	// std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
 
-	for (int i = 0; i < 9; i++)
-		firstClapTrap.attack("Evaluator");
-	firstClapTrap.beRepaired(2);
+	// for (int i = 0; i < 9; i++)
+	// 	firstClapTrap.attack("Evaluator");
+	// firstClapTrap.beRepaired(2);
 
-	std::cout << "--------------------------------" << std::endl;
-	std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
-	std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
-	std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
-	std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
-	std::cout << "--------------------------------" << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
+	// std::cout << "Stats of ClapTrap " << firstClapTrap.getName() << ":" << std::endl;
+	// std::cout << "Hitpoints: " << firstClapTrap.getHitPoints() << std::endl;
+	// std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
+	// std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
+	// std::cout << "--------------------------------" << std::endl;
 
-
+	std::cout << "Creating firstScavTrap: " << std::endl;
 	ScavTrap firstScavTrap("ScavTrap1");
+	
+	std::cout << std::endl;
+	std::cout << "Copying firstScavTrap to new secondScavTrap: " << std::endl;
+	ScavTrap secondScavTrap(firstScavTrap);
+	
+	std::cout << std::endl;
+	std::cout << "Creating thirdScavTrap without any name: " << std::endl;
+	ScavTrap thirdScavTrap;
+
+	std::cout << std::endl;
+	std::cout << "Copying attributes from secondScavTrap to thirdScavTrap: " << std::endl;
+	thirdScavTrap = secondScavTrap;
+
+	std::cout << std::endl;
+
+	firstScavTrap.attack("NOTHING_1");
+	secondScavTrap.attack("NOTHING_2");
+	thirdScavTrap.attack("NOTHING_3");
+
+	std::cout << std::endl;
+	std::cout << "Printing name of secondScavTrap: " << secondScavTrap.getName() << std::endl;
+	std::cout << std::endl;
 
 	return (0);
 }
