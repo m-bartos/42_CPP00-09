@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:34:24 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/19 18:28:46 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 13:50:23 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Fixed crossSectionOrientation(Point const &pointA, Point const &pointB, Point co
 	Fixed dx2 = pointA.getX() - pointB.getX();
 	Fixed dy2 = pointA.getY() - pointB.getY();
 
-	Fixed test((dx1 * dy2) - (dx2 * dy1));
+	Fixed result((dx1 * dy2) - (dx2 * dy1));
 
-	return (test);
+	return (result);
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
