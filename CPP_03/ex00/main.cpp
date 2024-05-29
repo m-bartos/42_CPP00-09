@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:19:39 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/28 13:58:34 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:43:17 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int main () {
 	std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
 	std::cout << "--------------------------------" << std::endl;
 
+	firstClapTrap.takeDamage(10);
+	firstClapTrap.takeDamage(10);
+
 	for (int i = 0; i < 9; i++)
 		firstClapTrap.attack("Evaluator");
 	firstClapTrap.beRepaired(2);
@@ -43,6 +46,8 @@ int main () {
 	std::cout << "Energy points: " << firstClapTrap.getEnergyPoints() << std::endl;
 	std::cout << "Attack damage: " << firstClapTrap.getAttackDamage() << std::endl;
 	std::cout << "--------------------------------" << std::endl;
+
+
 
 	return (0);
 }
