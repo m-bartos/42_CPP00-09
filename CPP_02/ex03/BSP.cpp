@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:34:24 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/29 13:50:23 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:09:40 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
 	signBC = crossSectionOrientation(b, c, point);
 	signCA = crossSectionOrientation(c, a, point);
 
-	if (signAB >= 0 && signBC >= 0 && signCA >= 0)
+	if (signAB > 0 && signBC > 0 && signCA > 0)
 		return (true);
-	else if (signAB <= 0 && signBC <= 0 && signCA <= 0)
+	else if (signAB < 0 && signBC < 0 && signCA < 0)
 		return (true);
 	else
 		return (false);
