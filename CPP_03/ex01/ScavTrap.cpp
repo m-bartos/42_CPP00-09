@@ -6,23 +6,28 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:01:34 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/29 11:43:10 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 12:35:41 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("", 100, 50, 20) {
+ScavTrap::ScavTrap() : ClapTrap() {
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this-> attackDamage = 20;
 	std::cout << "ScavTrap created (with default ScavTrap constructor)." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string newName) : ClapTrap(newName, 100, 50, 20) {
+ScavTrap::ScavTrap(std::string newName) : ClapTrap(newName) {
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this-> attackDamage = 20;
 	std::cout << "ScavTrap \"" << newName << "\" created." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& oldObj) : ClapTrap(oldObj) {
 	std::cout << "ScavTrap copy constructor called." << std::endl;
-	// *this = oldObj;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& oldObj) {
