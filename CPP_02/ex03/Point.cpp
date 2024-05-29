@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:39:39 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/19 17:46:35 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:07:55 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ Point& Point::operator=(const Point& oldPoint) {
 	return (*this);
 }
 
-// Point	Point::operator+(const Point &pointB) const {
-// 	Point temp(this->x.toFloat() + pointB.x.toFloat(), this->y.toFloat() + pointB.y.toFloat());
-
-// 	return (temp);
-// }
-
 Point::~Point() {}
 
 std::ostream& operator<<(std::ostream &outputStream, const Point &point)
@@ -41,14 +35,3 @@ std::ostream& operator<<(std::ostream &outputStream, const Point &point)
 const Fixed&	Point::getX() const { return (this->x); }
 
 const Fixed&	Point::getY() const { return (this->y); }
-
-// Fixed Point::pointDistance(const Point &pointA, const Point &pointB) {
-// 	Fixed distance;
-	
-// 	distance = (((pointA.getX() - pointB.getX()) * (pointA.getX() - pointB.getX())) + ((pointA.getY() - pointB.getY()) * (pointA.getY() - pointB.getY())));
-// 	return (distance);
-// }
-
-// bool bsp( Point const a, Point const b, Point const c, Point const point) {
-	
-// }
