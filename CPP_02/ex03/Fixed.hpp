@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 09:26:35 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/17 12:41:06 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:04:31 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ public:
 private:
 	int fixedPointValue;
 	static const int FRACTIONALBITS = 8;
-	
 };
 
 std::ostream& operator<<(std::ostream &outputStream, const Fixed &fixedNb);

@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:41:10 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/19 17:35:49 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/29 14:04:53 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ class Point {
 };
 
 std::ostream& operator<<(std::ostream &outputStream, const Point &point);
-
-// bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif
