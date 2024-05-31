@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:07:21 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/31 09:18:41 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/05/31 09:46:35 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ public:
 	~FragTrap();
 
 	void	highFiveGuys(void);
-	// void guardGate();
-	// void	attack(const std::string& target);
 };
 
 #endif
