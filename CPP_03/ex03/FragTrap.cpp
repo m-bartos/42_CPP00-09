@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 09:07:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/31 09:46:31 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/05 10:13:57 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ FragTrap::~FragTrap() {
 }
 
 void FragTrap::highFiveGuys(void) {
-	std::cout << this->name << "Positive high-five request!" << std::endl;
+	std::cout << this->name << ": Positive high-five request!" << std::endl;
 }
