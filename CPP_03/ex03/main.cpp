@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:19:39 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/31 15:48:37 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/05 10:13:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int main () {
 	std::cout << std::endl;
 	DiamondTrap diamond2(diamond1);
 	std::cout << std::endl;
-	DiamondTrap diamond3("IDIOTA");
+	DiamondTrap diamond3("DIAMOND3");
 	std::cout << std::endl;
 	diamond1 = diamond3;
 	std::cout << std::endl;
