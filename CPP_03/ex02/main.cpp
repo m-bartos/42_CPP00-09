@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:19:39 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/31 09:17:42 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/05 10:09:34 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,12 @@ int main () {
 	std::cout << std::endl;
 
 	FragTrap frag1("Frag1");
-
+	std::cout << std::endl;
+	
 	frag1.highFiveGuys();
+	std::cout << std::endl;
 	frag1.attack("NOOONE");
+	std::cout << std::endl;
 
 	return (0);
 }
