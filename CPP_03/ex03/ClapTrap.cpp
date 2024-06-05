@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 11:04:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/05/31 15:43:13 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/05 10:15:46 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& oldObj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "ClapTrap is \"" << this->name << "\" destroyed." << std::endl;
+	std::cout << "ClapTrap \"" << this->name << "\" destroyed." << std::endl;
 }
 
 std::string	ClapTrap::getName() {return name;}
