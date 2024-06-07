@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:24:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:08:14 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/07 12:41:33 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ Cat::~Cat() {
 	std::cout << "Cat destructed!" << std::endl;
 }
 
+// A function that is virtual in a base class is implicitly virtual in its
+// derived classes. When a derived class overrides a virtual, the parame-
+// ters in the base and derived classes must match exactly.
 void Cat::makeSound() const {
 	std::cout << "Meow, meow!" << std::endl;
 }
