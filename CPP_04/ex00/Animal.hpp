@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/03 14:49:06 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/07 10:57:20 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ public:
 	Animal();
 	Animal(const Animal&);
 	Animal& operator=(const Animal&);
-	~Animal();
+	virtual ~Animal();
+
 	std::string getType() const;
 	virtual void makeSound() const;
 
