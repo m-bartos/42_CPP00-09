@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:31 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/03 15:19:07 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/07 10:18:01 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ int	main() {
 	const Cat		Mice;
 
 	std::cout << std::endl;
+	std::cout << "Type is \"" << newAnimal.getType() << "\"" << std::endl;
 	newAnimal.makeSound();
 	std::cout << std::endl;
-	std::cout << "Dog type is \"" << Ralf.getType() << "\"" << std::endl;
+	std::cout << "Type is \"" << Ralf.getType() << "\"" << std::endl;
 	Ralf.makeSound();
 	std::cout << std::endl;
-	std::cout << "Cat type is \"" << Mice.getType() << "\"" << std::endl;
+	std::cout << "Type is \"" << Mice.getType() << "\"" << std::endl;
 	Mice.makeSound();
 	std::cout << std::endl;
 	return (0);
