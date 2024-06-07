@@ -6,20 +6,19 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:24:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/03 14:49:21 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/07 11:08:20 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
 
-Dog::Dog() {
+Dog::Dog() : Animal() {
 	this->type = "DOG";
 	std::cout << "Dog constructed!" << std::endl;
 }
 
 Dog::Dog(const Dog &refObj) : Animal(refObj) {
-	// this->type = refObj.type;
 	std::cout << "Dog constructed!" << std::endl;
 }
 
