@@ -6,19 +6,18 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:24:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/03 14:49:11 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/06/07 11:08:14 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat() : Animal() {
 	this->type = "CAT";
 	std::cout << "Cat constructed!" << std::endl;
 }
 
 Cat::Cat(const Cat &refObj) : Animal(refObj) {
-	// this->type = refObj.type;
 	std::cout << "Cat constructed!" << std::endl;
 }
 
