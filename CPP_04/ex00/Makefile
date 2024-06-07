@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/06/03 15:17:53 by mbartos          ###   ########.fr        #
+#    Updated: 2024/06/07 11:04:47 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CCP =		c++
 CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
-SRC = 	Animal.cpp main.cpp Dog.cpp Cat.cpp
+SRC = 	Animal.cpp main.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 
 #objects
 OBJ_PATH =	obj/
