@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:31 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 13:01:11 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/03 11:26:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int	main() {
 			std::cout << std::endl;
 		}
 		std::cout << "----- END OF SECOND TEST SECTION -----" << std::endl;
+	}
+	{
+		std::cout << "----- START OF THIRD TEST SECTION -----" << std::endl;
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		delete j;//should not create a leak
+		delete i;
+		std::cout << "----- END OF THIRD TEST SECTION -----" << std::endl;
 	}
 	return (0);
 }
