@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:58:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/03 15:51:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/03 15:54:37 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ Character::Character(std::string name) : name(name) {
 };
 
 Character::~Character() {
+	for (int i = 0; i < 4; i++)
+		if (inventory[i] != NULL)
+			delete inventory[i];
 	std::cout << "Character destroyed" << std::endl;
 }
 
