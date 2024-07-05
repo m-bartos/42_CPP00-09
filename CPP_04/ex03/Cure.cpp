@@ -12,33 +12,30 @@
 
 #include "Cure.hpp"
 
-Cure::Cure() : AMaterial(this->type) {
-	std::cout << "Cure created!" << std::endl;
+Cure::Cure() : AMateria("cure") {
+	// std::cout << "Cure created!" << std::endl;
 }
 
-Cure::Cure(const Cure& refObj) : AMaterial(refObj) {
-	std::cout << "Cure created!" << std::endl;
+Cure::Cure(const Cure& refObj) : AMateria(refObj) {
+	// std::cout << "Cure created!" << std::endl;
 }
 
-Cure& operator=(const Cure& refObj) {
-	// if (this != &refObj)
-	// {
-	// 	this->type = refObj.type;
-	// }
-	std::cout << "Assignment operator called on Cure" << std::endl;
+Cure& Cure::operator=(const Cure& refObj) {
+	(void)refObj;
+	// std::cout << "Assignment operator called on Cure" << std::endl;
 	return (*this);
 }
 
 Cure::~Cure() {
-	std:cout << "Cure destroyed" << std::endl;
+	// std::cout << "Cure destroyed" << std::endl;
 }
 
-AMateria* clone() const {
+AMateria* Cure::clone() const {
 	AMateria *cure = new Cure;
 
 	return(cure);
 }
 
 void Cure::use(ICharacter& target) {
-	std::out << "* heals " << target->name << "’s wounds *" << std::endl;	
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;	
 }

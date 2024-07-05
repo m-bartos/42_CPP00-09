@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/07/03 15:52:02 by mbartos          ###   ########.fr        #
+#    Updated: 2024/07/05 10:17:49 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CCP =		c++
 CFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 #sources
-SRC = 	AMateria.cpp Cure.cpp Ice.cpp Character.cpp
+SRC = 	AMateria.cpp Cure.cpp Ice.cpp Character.cpp main.cpp MateriaSource.cpp
 
 #objects
 OBJ_PATH =	obj/
