@@ -6,17 +6,17 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:15:05 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 10:34:31 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 14:24:07 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 
-AMateria::AMateria() : type("") {
+AMateria::AMateria() : type(""), isEquipped(false) {
 	// std::cout << "AMateria created!" << std::endl;
 }
 
-AMateria::AMateria(const AMateria& refObj) : type(refObj.type) {
+AMateria::AMateria(const AMateria& refObj) : type(refObj.type), isEquipped(false) {
 	// std::cout << "AMateria constructed!" << std::endl;
 }
 
@@ -29,12 +29,20 @@ AMateria& AMateria::operator=(const AMateria& refObj) {
 	return (*this);
 }
 
-AMateria::AMateria(std::string const & type) : type(type) {
+AMateria::AMateria(std::string const & type) : type(type), isEquipped(false) {
 	// std::cout << "Amateria constructed with type " << this->type << "." << std::endl;
 }
 
 AMateria::~AMateria() {
 	// std::cout << "AMateria destroyed" << std::endl;
+}
+
+void AMateria::setIsEquipped(bool value) {
+	this->isEquipped = value;
+}
+
+bool AMateria::getIsEquipped() {
+	return (isEquipped);
 }
 
 std::string const & AMateria::getType() const {

@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:58:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 12:37:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 14:53:36 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Character::Character(const Character& refObj) : name(refObj.getName()) {
 		inventory[i] = refObj.inventory[i]->clone();
 }
 
-Character& Character::operator = (const Character& refObj)
+Character& Character::operator= (const Character& refObj)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -47,16 +47,29 @@ Character::~Character() {
 	for (int i = 0; i < 4; i++)
 		if (inventory[i] != NULL)
 		{
-			delete inventory[i];
-			inventory[i] = NULL;
+			if (inventory[i]->getIsEquipped()) {
+				std::cout << "Character inventory delete at index = " << i << std::endl;
+				for(int j = 0; j < 124; j++) {
+					if (floor[j] == inventory[i]) {
+						floor[j] = NULL;
+					}
+				}
+				delete inventory[i];
+				inventory[i] = NULL;
+			}
 		}
 	// std::cout << "Character destroyed" << std::endl;
 }
 
 void Character::equip(AMateria* m) {
+	if (m->getIsEquipped()) {
+		std::cout << "Item cannot be equipped. Someone else has it in his inventory" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < 4; i++) {
 		if (this->inventory[i] == NULL) {
 			this->inventory[i] = m;
+			m->setIsEquipped(true);
 			return ;
 		}
 	}
@@ -68,17 +81,26 @@ void Character::unequip(int idx) {
 		std::cout << "Not a valid index" << std::endl;
 		return ;
 	}
-	if (inventory[idx] != NULL)
-	{
-		for(int i = 0; i < 124; i++)
+	if (inventory[idx] != NULL) {
+		for(int i = 0; i < 124; i++) {
+			if (floor[i] == inventory[idx])
+			{
+				// std::cout << "AMateria is already on the floor" << std::endl;
+				inventory[idx]->setIsEquipped(false);
+				inventory[idx] = NULL;
+				return ;
+			}
+		}
+		for (int i = 0; i < 124; i++)
 		{
 			if (floor[i] == NULL)
 			{
 				floor[i] = inventory[idx];
-				break ;
+				inventory[idx]->setIsEquipped(false);
+				inventory[idx] = NULL;
+				return ;
 			}
 		}
-		inventory[idx] = NULL;
 	}
 	else
 		std::cout << "Nothing to unequip" << std::endl;
@@ -93,7 +115,7 @@ void Character::use(int idx, ICharacter& target) {
 	if (inventory[idx] != NULL)
 		this->inventory[idx]->use(target);
 	else
-		std::cout << "Nothing on index = " << idx << std::endl;
+		std::cout << "Cannot cal use: nothing on index = " << idx << std::endl;
 }
 
 std::string	const & Character::getName() const {
@@ -102,9 +124,9 @@ std::string	const & Character::getName() const {
 
 void Character::clearFloor() {
 	for (int i = 0; i < 124; i++) {
-		if (floor[i] != NULL) {
-			delete floor[i];
-			floor[i] = NULL;
+		if (floor[i] != NULL && !(floor[i]->getIsEquipped())) {
+				delete floor[i];
+				floor[i] = NULL;
 		}
 	}
 }

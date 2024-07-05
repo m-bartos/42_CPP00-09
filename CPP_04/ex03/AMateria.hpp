@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:17:06 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 09:33:47 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 14:05:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 class AMateria {
 
 protected:
-	std::string type;
+	std::string	type;
+	bool		isEquipped;
 
 public:
 	AMateria();
@@ -28,6 +29,8 @@ public:
 	AMateria(std::string const & type);
 	virtual ~AMateria();
 
+	void setIsEquipped(bool value);
+	bool getIsEquipped();
 	std::string const & getType() const; //Returns the materia type
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter& target);
