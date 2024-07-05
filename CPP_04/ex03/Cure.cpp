@@ -31,8 +31,7 @@ Cure::~Cure() {
 }
 
 AMateria* Cure::clone() const {
-	AMateria *cure = new Cure;
-
+	AMateria* cure = new Cure;
 	return(cure);
 }
 

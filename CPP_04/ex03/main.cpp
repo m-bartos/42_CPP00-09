@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:29:24 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 10:52:38 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 12:21:31 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ int main()
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 	ICharacter* me = new Character("me");
-	AMateria* tmp;
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
+	AMateria* tmp1;
+	tmp1 = src->createMateria("ice");
+	me->equip(tmp1);
+	AMateria* tmp2;
+	tmp2 = src->createMateria("cure");
+	me->equip(tmp2);
+	me->unequip(1);
+	me->unequip(0);
+	me->equip(tmp1);
+	me->equip(tmp2);
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
 	delete bob;
 	delete me;
 	delete src;
+	Character::clearFloor();
 	return (0);
 }

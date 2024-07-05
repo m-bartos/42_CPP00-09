@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:56:10 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 10:52:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 12:36:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ MateriaSource& MateriaSource::operator = (const MateriaSource& refObj)
 	for (int i = 0; i < 4; i++)
 	{
 		if (inventory[i] != NULL)
+		{
 			delete inventory[i];
+			inventory[i] = NULL;
+		}
 		inventory[i] = refObj.inventory[i]->clone();
 	}
 	return (*this);

@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:55:04 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 10:34:43 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 12:09:53 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ Ice::~Ice() {
 }
 
 AMateria* Ice::clone() const {
-	AMateria *ice = new Ice;
-
+	AMateria* ice = new Ice;
 	return(ice);
 }
 
