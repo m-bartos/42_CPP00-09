@@ -6,13 +6,13 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:58:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 14:53:36 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/05 15:03:55 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-AMateria* Character::floor[123];
+AMateria* Character::floor[FLOOR_SIZE];
 
 Character::Character() : name("") {
 	for (int i = 0; i < 4; i++)
@@ -26,10 +26,8 @@ Character::Character(const Character& refObj) : name(refObj.getName()) {
 
 Character& Character::operator= (const Character& refObj)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		if (inventory[i] != NULL)
-		{
+	for (int i = 0; i < 4; i++) {
+		if (inventory[i] != NULL) {
 			delete inventory[i];
 			inventory[i] = NULL;
 		}
@@ -45,11 +43,10 @@ Character::Character(std::string name) : name(name) {
 
 Character::~Character() {
 	for (int i = 0; i < 4; i++)
-		if (inventory[i] != NULL)
-		{
+		if (inventory[i] != NULL) {
 			if (inventory[i]->getIsEquipped()) {
 				std::cout << "Character inventory delete at index = " << i << std::endl;
-				for(int j = 0; j < 124; j++) {
+				for(int j = 0; j < FLOOR_SIZE; j++) {
 					if (floor[j] == inventory[i]) {
 						floor[j] = NULL;
 					}
@@ -82,25 +79,25 @@ void Character::unequip(int idx) {
 		return ;
 	}
 	if (inventory[idx] != NULL) {
-		for(int i = 0; i < 124; i++) {
-			if (floor[i] == inventory[idx])
-			{
+		for(int i = 0; i < FLOOR_SIZE; i++) {
+			if (floor[i] == inventory[idx]) {
 				// std::cout << "AMateria is already on the floor" << std::endl;
 				inventory[idx]->setIsEquipped(false);
 				inventory[idx] = NULL;
 				return ;
 			}
 		}
-		for (int i = 0; i < 124; i++)
+		for (int i = 0; i < FLOOR_SIZE; i++)
 		{
-			if (floor[i] == NULL)
-			{
+			if (floor[i] == NULL) {
 				floor[i] = inventory[idx];
 				inventory[idx]->setIsEquipped(false);
 				inventory[idx] = NULL;
 				return ;
 			}
 		}
+		std::cout << "Floor is full, cannot unequip AMateria - type: " << inventory[idx]->getType() << std::endl;
+		std::cout << "Increase the FLOOR_SIZE in Character.hpp" << std::endl;
 	}
 	else
 		std::cout << "Nothing to unequip" << std::endl;
@@ -115,7 +112,7 @@ void Character::use(int idx, ICharacter& target) {
 	if (inventory[idx] != NULL)
 		this->inventory[idx]->use(target);
 	else
-		std::cout << "Cannot cal use: nothing on index = " << idx << std::endl;
+		std::cout << "Cannot call use func: nothing on index = " << idx << std::endl;
 }
 
 std::string	const & Character::getName() const {
@@ -123,7 +120,7 @@ std::string	const & Character::getName() const {
 }
 
 void Character::clearFloor() {
-	for (int i = 0; i < 124; i++) {
+	for (int i = 0; i < FLOOR_SIZE; i++) {
 		if (floor[i] != NULL && !(floor[i]->getIsEquipped())) {
 				delete floor[i];
 				floor[i] = NULL;
