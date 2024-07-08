@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:50 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:27:10 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:15:48 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ public:
 
 	std::string getType() const;
 	virtual void makeSound() const;
+	virtual void printBrainAdress() const;
 
 protected:
 	std::string type;

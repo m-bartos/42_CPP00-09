@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:59:19 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/08 11:37:14 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:15:52 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,4 @@ void Animal::makeSound() const {
 		std::cout << "Generic sound" << std::endl;
 }
 
+void Animal::printBrainAdress() const {}
