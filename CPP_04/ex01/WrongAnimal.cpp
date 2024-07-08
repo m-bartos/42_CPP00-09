@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:59:00 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:06:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:37:58 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal& refObj) {
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& refObj) {
-	if (this != &refObj)
-	{
+	if (this != &refObj) {
 		this->type = refObj.type;
 	}
 	std::cout << "Assignment operator called on WrongAnimal" << std::endl;

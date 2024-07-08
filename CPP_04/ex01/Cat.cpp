@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:24:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:27:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:37:28 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ Cat::Cat(const Cat &refObj) : Animal(refObj) {
 }
 
 Cat& Cat::operator=(const Cat &refObj) {
-	if (this != &refObj)
-	{
+	if (this != &refObj) {
 		this->type = refObj.type;
 	}
 	return (*this);

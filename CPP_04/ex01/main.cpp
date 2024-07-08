@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:31 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/03 11:26:26 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:37:44 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,15 @@ int	main() {
 		std::cout << "----- START OF SECOND TEST SECTION -----" << std::endl;
 		int	i = 0;
 		const Animal*	animals[10];
-		while (i < 5)
-		{
+		while (i < 5) {
 			animals[i++] = new Cat();
 			std::cout << std::endl;
 		}
-		while (i < 10)
-		{
+		while (i < 10) {
 			animals[i++] = new Dog();
 			std::cout << std::endl;
 		}
-		for (i = 0; i < 10;)
-		{
+		for (i = 0; i < 10;) {
 			delete animals[i++];
 			std::cout << std::endl;
 		}

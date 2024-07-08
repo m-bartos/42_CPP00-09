@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 10:36:58 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 10:45:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:37:21 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ Brain::Brain(const Brain &refObj) {
 }
 
 Brain& Brain::operator=(const Brain &refObj) {
-	if (this != &refObj)
-	{
+	if (this != &refObj) {
 		std::copy(refObj.ideas, refObj.ideas + 100, this->ideas);
 	}
 	return (*this);

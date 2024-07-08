@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 11:03:28 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:10:03 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:38:04 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ WrongCat::WrongCat(const WrongCat &refObj) : WrongAnimal(refObj) {
 }
 
 WrongCat& WrongCat::operator=(const WrongCat &refObj) {
-	if (this != &refObj)
-	{
+	if (this != &refObj) {
 		this->type = refObj.type;
 	}
 	return (*this);
