@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 14:24:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 11:27:18 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:52:20 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,25 @@ Cat::~Cat() {
 
 void Cat::makeSound() const {
 	std::cout << "Meow, meow!" << std::endl;
+}
+
+void Cat::printBrainAdress() const {
+	std::cout << this->brain << std::endl;
+}
+
+void Cat::createIdea(std::string idea, int i) {
+	if (i >= 0 && i < 100)
+		this->brain->ideas[i] = idea;
+	else
+		std::cout << "Index out of range" << std::endl;
+}
+
+void Cat::printIdeas() {
+	std::cout << "All ideas in brain: " << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		if (this->brain->ideas[i] != "")
+			std::cout << "Idea = \'" << this->brain->ideas[i] << "\'" << " at index = " << i << std::endl;
+	}
+	std::cout << "-------------------------------" << std::endl;
 }

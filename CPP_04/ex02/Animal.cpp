@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:59:19 by mbartos           #+#    #+#             */
-/*   Updated: 2024/06/07 10:16:42 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:51:41 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ std::string Animal::getType() const {
 void Animal::makeSound() const {
 		std::cout << "Generic sound" << std::endl;
 }
-

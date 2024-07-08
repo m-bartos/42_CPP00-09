@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:54:31 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/03 11:32:57 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 13:54:53 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,15 @@ int	main() {
 			std::cout << std::endl;
 		}
 		std::cout << "----- END OF SECOND TEST SECTION -----" << std::endl;
+	}
+	{
+		Animal* dogAlf1 = new Dog();
+		Animal* dogAlf2 = new Dog();
+		dogAlf1->printBrainAdress();
+		dogAlf2->printBrainAdress();
+
+		delete dogAlf1;
+		delete dogAlf2;
 	}
 	return (0);
 }
