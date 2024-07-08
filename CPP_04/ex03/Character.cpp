@@ -6,13 +6,13 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:58:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/05 15:03:55 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/08 11:14:12 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-AMateria* Character::floor[FLOOR_SIZE];
+AMateria* Character::unequipped_items[UNEQUIPPED_ITEMS_SIZE];
 
 Character::Character() : name("") {
 	for (int i = 0; i < 4; i++)
@@ -45,10 +45,10 @@ Character::~Character() {
 	for (int i = 0; i < 4; i++)
 		if (inventory[i] != NULL) {
 			if (inventory[i]->getIsEquipped()) {
-				std::cout << "Character inventory delete at index = " << i << std::endl;
-				for(int j = 0; j < FLOOR_SIZE; j++) {
-					if (floor[j] == inventory[i]) {
-						floor[j] = NULL;
+				// std::cout << "Character inventory delete at index = " << i << std::endl;
+				for(int j = 0; j < UNEQUIPPED_ITEMS_SIZE; j++) {
+					if (unequipped_items[j] == inventory[i]) {
+						unequipped_items[j] = NULL;
 					}
 				}
 				delete inventory[i];
@@ -79,25 +79,25 @@ void Character::unequip(int idx) {
 		return ;
 	}
 	if (inventory[idx] != NULL) {
-		for(int i = 0; i < FLOOR_SIZE; i++) {
-			if (floor[i] == inventory[idx]) {
-				// std::cout << "AMateria is already on the floor" << std::endl;
+		for(int i = 0; i < UNEQUIPPED_ITEMS_SIZE; i++) {
+			if (unequipped_items[i] == inventory[idx]) {
+				// std::cout << "AMateria is already on the unequipped_items" << std::endl;
 				inventory[idx]->setIsEquipped(false);
 				inventory[idx] = NULL;
 				return ;
 			}
 		}
-		for (int i = 0; i < FLOOR_SIZE; i++)
+		for (int i = 0; i < UNEQUIPPED_ITEMS_SIZE; i++)
 		{
-			if (floor[i] == NULL) {
-				floor[i] = inventory[idx];
+			if (unequipped_items[i] == NULL) {
+				unequipped_items[i] = inventory[idx];
 				inventory[idx]->setIsEquipped(false);
 				inventory[idx] = NULL;
 				return ;
 			}
 		}
 		std::cout << "Floor is full, cannot unequip AMateria - type: " << inventory[idx]->getType() << std::endl;
-		std::cout << "Increase the FLOOR_SIZE in Character.hpp" << std::endl;
+		std::cout << "Increase the UNEQUIPPED_ITEMS_SIZE in Character.hpp" << std::endl;
 	}
 	else
 		std::cout << "Nothing to unequip" << std::endl;
@@ -119,11 +119,11 @@ std::string	const & Character::getName() const {
 	return(this->name);
 }
 
-void Character::clearFloor() {
-	for (int i = 0; i < FLOOR_SIZE; i++) {
-		if (floor[i] != NULL && !(floor[i]->getIsEquipped())) {
-				delete floor[i];
-				floor[i] = NULL;
+void Character::clearUnequippedItems() {
+	for (int i = 0; i < UNEQUIPPED_ITEMS_SIZE; i++) {
+		if (unequipped_items[i] != NULL && !(unequipped_items[i]->getIsEquipped())) {
+				delete unequipped_items[i];
+				unequipped_items[i] = NULL;
 		}
 	}
 }
