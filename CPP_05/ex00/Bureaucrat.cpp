@@ -6,20 +6,20 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:31:04 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 12:45:57 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/12 13:41:36 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : name(""), grade(150)
+Bureaucrat::Bureaucrat() : name(""), grade(MINIMUM_GRADE)
 {}
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 {
-	if (grade < 1)
+	if (grade < MAXIMUM_GRADE)
 		throw Bureaucrat::GradeTooLowException();
-	if (grade > 150)
+	if (grade > MINIMUM_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	this->grade = grade;
 }
@@ -38,14 +38,14 @@ Bureaucrat::~Bureaucrat()
 
 void	Bureaucrat::incrementGrade()
 {
-	if (grade - 1 < 1)
+	if (grade - 1 < MAXIMUM_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	grade--;
 }
 
 void	Bureaucrat::decrementGrade()
 {
-	if (grade + 1 > 150)
+	if (grade + 1 > MINIMUM_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	grade++;
 }
