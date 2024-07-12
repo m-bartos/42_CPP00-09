@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:30:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 12:37:58 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/12 12:47:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ int	main()
 		Bureaucrat bobTheBoss = Bureaucrat("Bob", 1);
 		Bureaucrat neemand = Bureaucrat();
 
-		std::cout << "Name: |" << plebAli.getName() << "|, grade: " << plebAli.getGrade() << std::endl;
-		std::cout << "Name: |" << bobTheBoss.getName() << "|, grade: " << bobTheBoss.getGrade() << std::endl;
-		std::cout << "Name: |" << neemand.getName() << "|, grade: " << neemand.getGrade() << std::endl;
+		std::cout << "------------------" << std::endl;
+		std::cout << plebAli << std::endl;
+		std::cout << bobTheBoss << std::endl;
+		std::cout << neemand << std::endl;
+		std::cout << "------------------" << std::endl;
 
 		try
 		{

@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:31:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 12:23:09 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/12 12:43:36 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat&);
 		Bureaucrat& operator=(const Bureaucrat&);
 		~Bureaucrat();
-		const std::string	getName();
-		int					getGrade();
+		const std::string	getName() const;
+		int					getGrade() const;
 		void				decrementGrade();
 		void				incrementGrade();
 		
@@ -46,5 +46,7 @@ class Bureaucrat
 				virtual const char *what() const throw();
 		};
 };
+
+std::ostream&	operator<<(std::ostream &outputStream, const Bureaucrat& bureaucrat);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:31:04 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 12:36:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/12 12:45:57 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	Bureaucrat::decrementGrade()
 	grade++;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
 	return (grade);
 }
 
-const std::string Bureaucrat::getName() 
+const std::string Bureaucrat::getName() const
 {
 	return (name);
 }
@@ -63,9 +63,15 @@ const std::string Bureaucrat::getName()
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high! 1 is maximum-ultra-high king of everything grade!");
-};
+}
 
 const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return ("Grade too low! 150 is minimum grade for the lowest pleb bureaucrat!");
-};
+}
+
+std::ostream&	operator<<(std::ostream &outputStream, const Bureaucrat& bureaucrat)
+{
+	outputStream << "'" << bureaucrat.getName() << "', bureaucrat grade " << bureaucrat.getGrade();
+	return (outputStream);
+}
