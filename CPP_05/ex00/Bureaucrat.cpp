@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:31:04 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 13:41:36 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:35:02 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat() : name(""), grade(MINIMUM_GRADE)
 Bureaucrat::Bureaucrat(std::string name, int grade) : name(name)
 {
 	if (grade < MAXIMUM_GRADE)
-		throw Bureaucrat::GradeTooLowException();
-	if (grade > MINIMUM_GRADE)
 		throw Bureaucrat::GradeTooHighException();
+	if (grade > MINIMUM_GRADE)
+		throw Bureaucrat::GradeTooLowException();
 	this->grade = grade;
 }
 
