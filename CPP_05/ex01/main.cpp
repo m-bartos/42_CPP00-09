@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:30:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 14:38:51 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/15 11:07:34 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main()
 			Form form1 = Form("form1", 148, 8);
 			std::cout << plebAli << std::endl;
 			std::cout << form1 << std::endl;
-			form1.beSigned(plebAli);
+			plebAli.signForm(form1);
+			plebAli.signForm(form1);
 			std::cout << form1 << std::endl;
 		}
 		catch (std::exception& e)

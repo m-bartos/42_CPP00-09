@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:31:01 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 15:51:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/15 10:59:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 #define MINIMUM_GRADE 150
 #define MAXIMUM_GRADE 1
+
+class Form;
 
 class Bureaucrat
 {

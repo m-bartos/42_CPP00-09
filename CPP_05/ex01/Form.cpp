@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 13:32:36 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/12 14:40:19 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/15 11:07:19 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	Form::beSigned(Bureaucrat& bureaucrat)
 	if (this->getGradeRequiredToSign() < bureaucrat.getGrade())
 		throw Form::GradeTooLowException();
 	this->isSigned = true;
-	std::cout << "Form '" << this->getName() << "' signed by bureaucrat called '" << bureaucrat.getName() << "'." << std::endl;
 }
 
 const char *Form::GradeTooHighException::what(void) const throw()
