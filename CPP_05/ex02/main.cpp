@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:30:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/15 15:58:39 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:42:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	main()
 		{
 			Bureaucrat plebAli = Bureaucrat("Ali", 1);
 			ShrubberyCreationForm form1 = ShrubberyCreationForm("target");
+
 			std::cout << plebAli << std::endl;
 			std::cout << form1 << std::endl;
+
 			plebAli.signForm(form1);
 			std::cout << form1 << std::endl;
 			plebAli.executeForm(form1);
@@ -42,8 +44,10 @@ int	main()
 		{
 			Bureaucrat plebAli = Bureaucrat("Ali", 26);
 			RobotomyRequestForm form1 = RobotomyRequestForm("target123");
+
 			std::cout << plebAli << std::endl;
 			std::cout << form1 << std::endl;
+
 			plebAli.signForm(form1);
 			std::cout << form1 << std::endl;
 			for (int i = 0; i < 10; i++)
@@ -59,10 +63,12 @@ int	main()
 		std::cout << "------------------" << std::endl;
 		try
 		{
-			Bureaucrat plebAli = Bureaucrat("Ali", 2);
+			Bureaucrat plebAli = Bureaucrat("Ali", 6);
 			PresidentialPardonForm form1 = PresidentialPardonForm("targetPresident");
+
 			std::cout << plebAli << std::endl;
 			std::cout << form1 << std::endl;
+
 			plebAli.signForm(form1);
 			std::cout << form1 << std::endl;
 			plebAli.executeForm(form1);
