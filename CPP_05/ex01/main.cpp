@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:30:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/15 11:07:34 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:39:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int	main()
 {
 	{
+		std::cout << "------------------" << std::endl;
 		try
 		{
 			Bureaucrat plebAli = Bureaucrat("Ali", 147);
@@ -23,6 +24,22 @@ int	main()
 			std::cout << plebAli << std::endl;
 			std::cout << form1 << std::endl;
 			plebAli.signForm(form1);
+			std::cout << form1 << std::endl;
+		}
+		catch (std::exception& e)
+		{
+			std::cerr << "Error: " << e.what() << std::endl;
+		}
+		std::cout << "------------------" << std::endl;
+	}
+	{
+		std::cout << "------------------" << std::endl;
+		try
+		{
+			Bureaucrat plebAli = Bureaucrat("Ali", 149);
+			Form form1 = Form("form1", 148, 8);
+			std::cout << plebAli << std::endl;
+			std::cout << form1 << std::endl;
 			plebAli.signForm(form1);
 			std::cout << form1 << std::endl;
 		}
@@ -30,96 +47,8 @@ int	main()
 		{
 			std::cerr << "Error: " << e.what() << std::endl;
 		}
+		std::cout << "------------------" << std::endl;
 	}
-	// {
-	// 	Bureaucrat plebAli = Bureaucrat("Ali", 150);
-	// 	Bureaucrat bobTheBoss = Bureaucrat("Bob", 1);
-	// 	Bureaucrat neemand = Bureaucrat();
 
-	// 	std::cout << "------------------" << std::endl;
-	// 	std::cout << plebAli << std::endl;
-	// 	std::cout << bobTheBoss << std::endl;
-	// 	std::cout << neemand << std::endl;
-	// 	std::cout << "------------------" << std::endl;
-
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to decrement '" << neemand.getName() << "'" << std::endl;
-	// 		neemand.decrementGrade();
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooLowException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to decrement '" << plebAli.getName() << "'" << std::endl;
-	// 		plebAli.decrementGrade();
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooLowException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to increment '" << bobTheBoss.getName() << "'" << std::endl;
-	// 		bobTheBoss.incrementGrade();
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooHighException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// }
-	// {
-	// 	std::cout << "------------------" << std::endl;
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to construct bureaucrat with grade 0" << std::endl;
-	// 		Bureaucrat highGrade = Bureaucrat("Boss", 0);
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooLowException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooHighException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	std::cout << "------------------" << std::endl;
-	// }
-	// {
-	// 	std::cout << "------------------" << std::endl;
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to construct bureaucrat with grade 151" << std::endl;
-	// 		Bureaucrat highGrade = Bureaucrat("Boss", 151);
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooLowException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	catch (const Bureaucrat::GradeTooHighException e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	std::cout << "------------------" << std::endl;
-	// }
-	// // OR
-	// {
-	// 	std::cout << "------------------" << std::endl;
-	// 	try
-	// 	{
-	// 		std::cout << "Trying to construct bureaucrat with grade 151" << std::endl;
-	// 		Bureaucrat highGrade = Bureaucrat("Boss", 151);
-	// 	}
-	// 	catch (const std::exception& e)
-	// 	{
-	// 		std::cerr << "Exception: " << e.what() << std::endl;
-	// 	}
-	// 	std::cout << "------------------" << std::endl;
-	// }
-	// {
-	// 	Bureaucrat highGrade = Bureaucrat("Boss", 0);
-	// }
 	return (0);
 }
