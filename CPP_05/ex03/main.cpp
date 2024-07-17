@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 11:30:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/17 13:09:01 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:46:03 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main()
 {
 	{
 		std::cout << "------------------" << std::endl;
+
 		Intern intern;
 		AForm* form;
 
@@ -50,14 +51,17 @@ int	main()
 		{
 			Intern intern;
 			AForm* form;
-			Bureaucrat plebAli = Bureaucrat("Ali", 1);
 
+			Bureaucrat plebAli = Bureaucrat("Ali", 1);
 			form = intern.makeForm("ShrubberyCreationForm", "Target3");
+
 			std::cout << plebAli << std::endl;
 			std::cout << *form << std::endl;
+
 			plebAli.signForm(*form);
 			std::cout << *form << std::endl;
 			plebAli.executeForm(*form);
+
 			delete form;
 		}
 		catch (std::exception& e)
@@ -65,7 +69,7 @@ int	main()
 			std::cerr << "Error: " << e.what() << std::endl;
 		}
 		std::cout << "------------------" << std::endl;
-		
 	}
+
 	return (0);
 }
