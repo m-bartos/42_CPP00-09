@@ -17,7 +17,7 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm
 	target = "";
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), target(target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("PresidentialPardonForm", 25, 5), target(target)
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& refObj) : AForm("PresidentialPardonForm", 25, 5)

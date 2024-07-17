@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 11:32:38 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/15 13:27:37 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/17 13:22:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class ShrubberyCreationForm : public AForm
 {
 	public:
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm&);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm&);
 		~ShrubberyCreationForm();
