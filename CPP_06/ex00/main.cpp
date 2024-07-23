@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:31:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/19 15:18:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/23 09:17:36 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, const char** argv)
 	}
 	catch (std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 	return (0);
 }
