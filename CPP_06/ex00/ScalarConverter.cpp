@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 11:29:34 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/19 17:16:11 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/23 09:18:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,52 @@ bool	ScalarConverter::isSpecial(const std::string str)
 
 bool	ScalarConverter::isInt(const std::string str)
 {
-	for (std::string::size_type i = 0; i < str.size(); i++)
+	std::string::size_type i;
+
+	if (str[0] == '+' || str[0] == '-')
+		i = 1;
+	else
+		i = 0;
+	for (; i < str.size(); i++)
 	{
 		if (!isdigit(static_cast<unsigned char>(str[i])))
 			return (false);
-		//implement +-
 	}
 	return (true);
 }
 
 bool	ScalarConverter::isFloat(const std::string str)
 {
-	//implement +-
+	std::string::size_type i;
+
 	if (str.size() < 2)
 		return (false);
+	if (str[0] == '+' || str[0] == '-')
+		i = 1;
 	else
+		i = 0;
+	for(; i < str.size() - 1; i++)
 	{
-		if (str[str.size() - 1] == 'f' && str.find_first_of("f") == str.find_last_of("f")
+		if (!isdigit(static_cast<unsigned char>(str[i])) && str[i] != '.')
+			return (false);
+	}
+	if (str[str.size() - 1] == 'f' && str.find_first_of("f") == str.find_last_of("f")
 			&& str.find_first_of(".") == str.find_last_of(".") && str.find_first_of(".") != std::string::npos)
 		return (true);
-	}
 	return (false);
 }
 
 bool	ScalarConverter::isDouble(const std::string str)
 {
-	//implement +-
+	std::string::size_type i;
+
 	if (str.size() < 2)
 		return (false);
-	else if (StringUtils::digitsAndOneDotOnly(str))
+	if (str[0] == '+' || str[0] == '-')
+		i = 1;
+	else
+		i = 0;
+	if (StringUtils::digitsAndOneDotOnly(&str[i]))
 		return (true);
 	return (false);
 }
@@ -95,7 +112,7 @@ void	ScalarConverter::convert(const std::string input)
 	int type;
 
 	type = typeChoose(input);
-	std::cout << "Input: |" << input <<"|, type: " << type << std::endl;
+	std::cout << "Input: |" << input << "|, type: " << type << std::endl;
 	if (type == ERROR || type == EMPTY)
 		throw invalidInputException();
 }
