@@ -1,6 +1,9 @@
 # 42_CPP00-09
 Basics of C++ at 42 Prague.
 
+## Sources, literature
+* C++ Primer (5th edition 2013) by Stanley B. Lippman, Barbara E. Moo, Josée Lajoie
+
 ## CPP_00
 Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuff.
 
@@ -46,3 +49,32 @@ Memory allocation, pointers to members, references, switch statement.
 * ex06 - Harl filter
   - The goal of this exercise is to use pointers to member functions and switch statement.
   - pointer to member function, switch
+
+## CPP_02
+Fixed point numbers
+
+## CPP_03
+Inheritance, multiple inheritance, diamond inheritance
+
+## CPP_04
+Inheritance, polymorphysm, "Interfaces", virtual and pure virtual functions
+
+## CPP_05
+Exceptions - throw, try-catch.
+
+## CPP_06
+Casting - static_cast, reinterpret_cast, dynamic_cast
+
+* ex00 - Conversion of scalar types
+  - The program takes a string as input (of char, int, float or double), detects the given type, parses it and outputs the value in the range of scalar types (char, int, float, double).
+  - It has to handle edge cases (invalid input, min/max int etc.).
+  - static_cast
+
+* ex01 - Serialization
+  - serialize function - converts given pointer to Data structure to uintptr_t 
+  - deserialize function - converts given uintptr_t to Data pointer 
+  - reinterpret_cast
+  - More info about reinterpret_cast - [StackOverFLow - Is `reinterpret_cast` actually good for anything?](https://stackoverflow.com/questions/68576099/is-reinterpret-cast-actually-good-for-anything), [CPPreference - reinterpret_cast conversion](https://en.cppreference.com/w/cpp/language/reinterpret_cast)
+
+* ex02 - Identify real type
+  - dynamic_cast
