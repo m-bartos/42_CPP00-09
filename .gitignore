@@ -56,3 +56,6 @@ serialization
 
 # ex02
 identify_real_type
+
+## CPP07
+swap_min_max
