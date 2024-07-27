@@ -3,6 +3,7 @@ Basics of C++ at 42 Prague.
 
 ## Sources, literature
 * C++ Primer (5th edition 2013) by Stanley B. Lippman, Barbara E. Moo, Josée Lajoie
+* The C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis
 
 ## CPP_00
 Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuff.
@@ -78,3 +79,6 @@ Casting - static_cast, reinterpret_cast, dynamic_cast
 
 * ex02 - Identify real type
   - dynamic_cast
+
+## CPP_07
+Templates - function templates, class templates.
