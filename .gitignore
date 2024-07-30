@@ -1,4 +1,5 @@
 *.a
+*.d
 *.o
 *.out
 .vscode
@@ -67,3 +68,8 @@ iter
 
 #ex02
 array
+
+## CPP08
+
+# ex00
+easy_find
