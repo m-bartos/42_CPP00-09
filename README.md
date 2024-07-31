@@ -4,6 +4,9 @@ Basics of C++ at 42 Prague.
 ## Sources, literature
 * CPP_00 - CPP_07 -> C++ Primer (5th edition 2013) by Stanley B. Lippman, Barbara E. Moo, Josée Lajoie
 * Containers (CPP_08, CPP_09) -> The C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis
+* Hash tables - basic functionality [coded from scratch in C](https://www.youtube.com/watch?v=2Ti5yvumFTU&ab_channel=JacobSorber)
+
+
 
 ## CPP_00
 Namespaces, classes, member functions, stdio streams, initialization lists, static, const, and some other basic stuff.
@@ -85,8 +88,6 @@ Templates - function templates, class templates.
 
 ## CPP_08
 Containers!
-* Hash tables - basic functionality [coded from scratch in C](https://www.youtube.com/watch?v=2Ti5yvumFTU&ab_channel=JacobSorber)
-* STL library + containters - The C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis
 
 * ex00 - Easy find
   - containers
