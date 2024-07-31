@@ -83,6 +83,17 @@ Casting - static_cast, reinterpret_cast, dynamic_cast
 ## CPP_07
 Templates - function templates, class templates.
 
-# CPP_08
+## CPP_08
 Containers!
 * Hash tables - basic functionality [coded from scratch in C](https://www.youtube.com/watch?v=2Ti5yvumFTU&ab_channel=JacobSorber)
+* STL library + containters - The C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis
+
+* ex00 - Easy find
+  - containers
+
+* ex01 - Span
+  - containers
+
+* ex02 - Mutated abomination
+  - extending stack containter with iterator
+  - class templates, inheritance
