@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 11:24:32 by mbartos           #+#    #+#             */
-/*   Updated: 2024/07/30 16:45:11 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/07/31 14:29:54 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <set>
+#include <vector>
 #include <algorithm>
+#include <climits>
 
 class Span 
 {
@@ -28,18 +30,26 @@ class Span
 		Span& operator=(const Span&);
 		~Span();
 
-		void addNumber(int newNumber);
-		long int longestSpan();
-		void printNumbers() const;
+		void		addNumber(int newNumber);
+		void		addManyNumbers(int count);
+		long int	longestSpan();
+		long int	shortestSpan();
+		void		printNumbers() const;
 
-	class EmptyContainer : public std::exception
+	class NotEnoughNumbers : public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
+
+	class MaxNumbers : public std::exception
 	{
 		public:
 			virtual const char *what() const throw();
 	};
 
 	private:
-		static void printElement(int element);
+		static void			printInt(int element);
 		unsigned int		maxNumbers;
 		std::multiset<int>	numbers;
 };
