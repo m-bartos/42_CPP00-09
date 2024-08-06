@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:35:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/05 17:02:16 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/06 13:47:33 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ class BitcoinExchange
 		BitcoinExchange& operator=(const BitcoinExchange&);
 		~BitcoinExchange();
 
-		int LoadFile();
-		void print_database(); // for checkings
+		int LoadDB();
+		void printDatabase(); // for checking
+		int LoadInput(char *inputFileName);
+
 
 	private:
 		std::map<std::string, double> database;
