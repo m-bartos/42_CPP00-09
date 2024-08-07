@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:40:06 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/07 12:00:29 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/07 19:31:01 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,46 @@
 BitcoinExchange::BitcoinExchange()
 {
 	this->LoadDaysInMonths();
+	this->fin = NULL;
+	this->dataCsv = NULL;
 };
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& refObj) 
 {
 	(void) refObj;
 	this->LoadDaysInMonths();
+	this->fin = NULL;
+	this->dataCsv = NULL;
 };
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& refObj) { (void) refObj; return (*this); };
-BitcoinExchange::~BitcoinExchange() {};
+
+BitcoinExchange::~BitcoinExchange()
+{
+	if (this->fin != NULL && this->fin->is_open())
+		this->fin->close();
+	if (this->dataCsv != NULL && this->dataCsv->is_open())
+		this->dataCsv->close();
+	delete this->dataCsv;
+	delete this->fin;
+};
+
+// this is not good - leaking when throwing exception
+// should do it in LoadInput and LoadDB funcs and delete this one
+std::ifstream* BitcoinExchange::LoadFile(const std::string filename)
+{
+	std::ifstream* fin1 = new std::ifstream(filename.c_str());
+	if (!fin1->is_open())
+	{
+		throw std::runtime_error("Cannot open file: " + filename); // problem!
+	}
+	return (fin1);
+}
 
 int BitcoinExchange::LoadDB()
 {
-	std::ifstream fin("data.csv");
-	if (!fin)
+	this->dataCsv = LoadFile("data.csv");
+	if (!this->dataCsv)
 	{ 
 		std::cerr << "Error, could not open DB file." << std::endl; 
 		return (-1); // exit?
@@ -38,7 +63,7 @@ int BitcoinExchange::LoadDB()
 	std::string line;
 	std::string	date;
 	std::string	value;
-	while (std::getline(fin, line))
+	while (std::getline(*(this->dataCsv), line))
 	{
 		if (line == "date,exchange_rate")
 			continue ;
@@ -48,10 +73,7 @@ int BitcoinExchange::LoadDB()
 		std::getline(stream, date, ',');
 		std::getline(stream, value);
 		database.insert(std::make_pair(date, strtod(value.c_str(), NULL)));
-		// break ;
 	}
-
-	fin.close();
 	return (0);
 }
 
@@ -87,129 +109,149 @@ void BitcoinExchange::LoadDaysInMonths()
 	daysInMonths.insert(std::make_pair("12", 31));
 }
 
-int BitcoinExchange::LoadInput(char *inputFileName)
+int BitcoinExchange::CheckHeader(std::ifstream& fin)
 {
-	std::ifstream fin(inputFileName);
-	if (!fin)
-	{ 
-		std::cerr << "Error, could not open input file." << std::endl; 
-		return (-1); // exit?
-	}
-
-
-	// header check
-	{
 	std::string line;
-	std::string date;
-	std::string value;
 	std::getline(fin, line);
 
+	std::string date;
+	std::string value;
 	std::stringstream stream(line);
-	
+
 	std::getline(stream, date, '|');
 	date = trim(date);
 	std::getline(stream, value);
 	value = trim (value);
-	if (date == "date" && value == "value")
-		std::cout << "Header found" << std::endl;
-	else
+	if (date != "date" || value != "value")
 	{
 		std::cout << "Header is missing. Add it to the file in format \"date | value\"" << std::endl;
-		return (-1);
+		return (0);
 	}
-	}
+	return (1);
+}
 
-	std::string line;
-	// load and evaluate the lines
-	while (std::getline(fin, line))
+int BitcoinExchange::CheckLine(std::string line)
+{
+	if (line.size() < 12 || line.find_last_of("|") != line.find_first_of("|") || line.find_first_of("|") == std::string::npos)
 	{
-		// std::cout << "In while loop" << std::endl;
-		// std::cout << "Line = |" << line << "|" << std::endl;
-		std::string date;
-		std::string value;
-		std::stringstream stream(line);
+		std::cout << "Error: Invalid line." << std::endl;
+		return (0);
+	}
+	return (1);
+}
 
-		std::getline(stream, date, '|');
-		date = trim(date);
-		// check date format and year, month, day numbers
-		if (date.size() != 10)
+int BitcoinExchange::CheckDate(std::string date)
+{
+	if (date.size() != 10)
+	{
+		std::cout << "Error: Invalid date." << std::endl;
+		return (0);
+	}
+	if (date[4] != '-' || date[7] != '-')
+	{
+		std::cout << "Error: Invalid date." << std::endl;
+		return (0);
+	}
+	if (date < "2009-01-02")
+	{
+		std::cout << "Error: Invalid date." << std::endl;
+		return (0);
+	}
+	int year = std::atoi(date.substr(0,4).c_str());
+	std::string month = date.substr(5, 2);
+	int day = std::atoi(date.substr(8, 2).c_str());
+	// std::cout << year << "-" << month << std::endl;
+	std::map<std::string, int>::iterator it = daysInMonths.find(month);
+	// leap year?
+	if (month == "02" && it != daysInMonths.end())
+	{
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
 		{
-			std::cout << "Error: Invalid date." << std::endl;
-			continue ;
-		}
-		if (date[4] != '-' || date[7] != '-')
-		{
-			std::cout << "Error: Invalid date." << std::endl;
-			continue ;
-		}
-		int year = std::atoi(date.substr(0,4).c_str());
-		std::string month = date.substr(5, 2);
-		int day = std::atoi(date.substr(8, 2).c_str());
-		std::cout << year << "-" << month << std::endl;
-		if (date < "2009-01-02")
-		{
-			std::cout << "Error: Invalid date." << std::endl;
-			continue ;
-		}
-		std::map<std::string, int>::iterator it = daysInMonths.find(month);
-		// leap year?
-		if (month == "02")
-		{
-			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+			// is leap year
+			if (day > (it->second + 1))
 			{
-				// std::cout << "Leap year" << std::endl;
-				if (day > (it->second + 1))
-				{
-					std::cout << "Error: Invalid date." << std::endl;
-					continue ;
-				}
-			}
-			else
-			{
-				// std::cout << "Not a leap year" << std::endl;
-				if (day > (it->second))
-				{
-					std::cout << "Error: Invalid date." << std::endl;
-					continue ;
-				}
+				std::cout << "Error: Invalid date." << std::endl;
+				return (0);
 			}
 		}
-		else if (it == daysInMonths.end() || day > it->second)
-		{
-			std::cout << "Error: Invalid date." << std::endl;
-			continue ;
-		}
-
-// rok není dělitelný číslem 4 – rok není přestupný
-// rok je dělitelný číslem 4 a nelze ho vydělit číslem 100 – rok je přestupný
-// rok je dělitelný číslem 100 a nelze ho vydělit číslem 400 – rok není přestupný
-// rok je dělitelný číslem 400 – rok je přestupný
-
-		std::getline(stream, value);
-		// std::cout << "|" << value << "|" << std::endl;
-		// value = trim(value);
-		// std::cout << "|" << value << "|" << std::endl;
-
-		// std::cout << "Date = |" << date << "|, value = |" << value << "|" << std::endl;
-		double	amount = strtod(value.c_str(), NULL);
-		if (amount < 0 || amount > 1000)
-			std::cout << "Error: Number not in <0, 1000> range." << std::endl;
 		else
 		{
-			// std::cout << "Amount: " << amount << std::endl;
-			// std::cout << "Date(search): |" << date << "|" << std::endl;
-			std::map<std::string, double>::const_iterator it = database.find(date);
-			if (it == database.end())
+			// is not leap year;
+			if (day > (it->second))
 			{
-				it = database.upper_bound(date);
-				if (it != database.begin())
-					it--;
-				else
-					std::cout << "Date not found." << std::endl;
+				std::cout << "Error: Invalid date." << std::endl;
+				return (0);
 			}
-			std::cout << "Date(found): " << it->first << ", " << "price: " << it->second << ". Result = " << it->second * amount << std::endl;
 		}
 	}
+	else if (it == daysInMonths.end() || day > it->second)
+	{
+		std::cout << "Error: Invalid date." << std::endl;
+		return (0);
+	}
 
+	return (1);
+}
+
+int BitcoinExchange::CheckValue(std::string value)
+{
+	if (value.find_last_of(".") != value.find_first_of("."))
+	{
+		std::cout << "Error: Invalid value. Multiple dots." << std::endl;
+		return (0);
+	}
+	double	amount = strtod(value.c_str(), NULL);
+	if (amount < 0 || amount > 1000)
+	{
+		std::cout << "Error: Number not in <0, 1000> range." << std::endl;
+		return (0);
+	}
+	return (1);
+}
+
+void BitcoinExchange::FindAndPrint(std::string date, std::string value)
+{
+	double	amount = strtod(value.c_str(), NULL);
+	std::map<std::string, double>::const_iterator it = this->database.find(date);
+	if (it == this->database.end())
+	{
+		it = this->database.upper_bound(date);
+		if (it != this->database.begin())
+			it--;
+		else
+			std::cout << "Date not found." << std::endl;
+	}
+	std::cout << date << " => " << amount << " = " << it->second * amount << std::endl;
+
+}
+
+int BitcoinExchange::LoadInput(const std::string inputFileName)
+{
+	this->fin = this->LoadFile(inputFileName);
+	if (this->CheckHeader(*(this->fin)) == 0)
+		return (-1); // exit?
+
+	std::string line;
+	while (std::getline(*(this->fin), line))
+	{
+		if (this->CheckLine(line) == 0)
+			continue ;
+
+		std::stringstream stream(line);
+
+		std::string date;
+		std::getline(stream, date, '|');
+		date = trim(date);
+		if (this->CheckDate(date) == 0)
+			continue ;
+
+		std::string value;
+		std::getline(stream, value);
+		value = trim(value);
+		if(this->CheckValue(value) == 0)
+			continue ;
+
+		this->FindAndPrint(date, value);
+	}
 	return (0);
 }

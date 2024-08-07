@@ -1,0 +1,13 @@
+2012-02-29 => 1.4 = 6.972
+2016-02-29 => 1.4 = 604.646
+2020-02-29 => 1.4 = 12197.3
+2024-02-29 => 2 = 94231.9
+3000-02-28 => 1 = 47115.9
+3200-02-29 => 1 = 47115.9
+2011-02-28 => 1.2 = 1.152
+Error: Invalid date.
+Error: Invalid date.
+Error: Invalid date.
+Error: Invalid date.
+Error: Invalid date.
+Error: Invalid date.

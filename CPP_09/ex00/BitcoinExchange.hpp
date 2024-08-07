@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:35:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/07 09:49:04 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/07 18:17:17 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,23 @@ class BitcoinExchange
 
 		int LoadDB();
 		void printDatabase(); // for checking
-		int LoadInput(char *inputFileName);
+		int LoadInput(const std::string inputFileName);
 
 
 	private:
-		void LoadDaysInMonths();
 		std::map<std::string, double> database;
 		std::map<std::string, int> daysInMonths;
+
+		std::ifstream* dataCsv;
+		std::ifstream* fin;
+
+		void LoadDaysInMonths();
+		std::ifstream* LoadFile(const std::string filename);
+		int CheckHeader(std::ifstream& fin);
+		int CheckLine(std::string line);
+		int CheckDate(std::string line);
+		int CheckValue(std::string value);
+		void FindAndPrint(std::string date, std::string value);
 };
 
 std::string trim(const std::string& line);

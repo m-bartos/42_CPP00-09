@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/08/01 16:39:46 by mbartos          ###   ########.fr        #
+#    Updated: 2024/08/07 16:54:00 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ NAME =		btc
 
 #compiler
 CCP =		c++
-# CFLAGS =	-Wall -Wextra -Werror
+# CFLAGS =	-Wall -Wextra -Werror 
+# LDFLAGS =	-lgtest -lgtest_main -pthread
 CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 #sources
@@ -44,7 +45,7 @@ $(OBJ_PATH):
 
 $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BCYAN)[ Compiling $(NAME)... ]$(NC)"
-	$(CCP) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CCP) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
 	@echo "$(BOLD)$(GREEN)[ Program $(NAME) ready! ]$(NC)"
 
 clean:
