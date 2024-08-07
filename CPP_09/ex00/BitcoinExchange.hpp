@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:35:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/06 13:47:33 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/07 09:49:04 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include <cstdlib>
 
 class BitcoinExchange
 {
@@ -34,7 +35,11 @@ class BitcoinExchange
 
 
 	private:
+		void LoadDaysInMonths();
 		std::map<std::string, double> database;
+		std::map<std::string, int> daysInMonths;
 };
+
+std::string trim(const std::string& line);
 
 #endif

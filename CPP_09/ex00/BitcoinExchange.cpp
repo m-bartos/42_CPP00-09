@@ -6,14 +6,23 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:40:06 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/06 16:15:09 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/07 12:00:29 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {};
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& refObj) { (void) refObj; };
+BitcoinExchange::BitcoinExchange()
+{
+	this->LoadDaysInMonths();
+};
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& refObj) 
+{
+	(void) refObj;
+	this->LoadDaysInMonths();
+};
+
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& refObj) { (void) refObj; return (*this); };
 BitcoinExchange::~BitcoinExchange() {};
 
@@ -59,7 +68,23 @@ std::string trim(const std::string& line)
 	const char* WhiteSpace = " \t\v\r\n";
 	std::size_t start = line.find_first_not_of(WhiteSpace);
 	std::size_t end = line.find_last_not_of(WhiteSpace);
-	return start == end ? std::string() : line.substr(start, end - start + 1);
+	return line.substr(start, end - start + 1);
+}
+
+void BitcoinExchange::LoadDaysInMonths()
+{
+	daysInMonths.insert(std::make_pair("01", 31));
+	daysInMonths.insert(std::make_pair("02", 28));
+	daysInMonths.insert(std::make_pair("03", 31));
+	daysInMonths.insert(std::make_pair("04", 30));
+	daysInMonths.insert(std::make_pair("05", 31));
+	daysInMonths.insert(std::make_pair("06", 30));
+	daysInMonths.insert(std::make_pair("07", 31));
+	daysInMonths.insert(std::make_pair("08", 31));
+	daysInMonths.insert(std::make_pair("09", 30));
+	daysInMonths.insert(std::make_pair("10", 31));
+	daysInMonths.insert(std::make_pair("11", 30));
+	daysInMonths.insert(std::make_pair("12", 31));
 }
 
 int BitcoinExchange::LoadInput(char *inputFileName)
@@ -107,6 +132,58 @@ int BitcoinExchange::LoadInput(char *inputFileName)
 		std::getline(stream, date, '|');
 		date = trim(date);
 		// check date format and year, month, day numbers
+		if (date.size() != 10)
+		{
+			std::cout << "Error: Invalid date." << std::endl;
+			continue ;
+		}
+		if (date[4] != '-' || date[7] != '-')
+		{
+			std::cout << "Error: Invalid date." << std::endl;
+			continue ;
+		}
+		int year = std::atoi(date.substr(0,4).c_str());
+		std::string month = date.substr(5, 2);
+		int day = std::atoi(date.substr(8, 2).c_str());
+		std::cout << year << "-" << month << std::endl;
+		if (date < "2009-01-02")
+		{
+			std::cout << "Error: Invalid date." << std::endl;
+			continue ;
+		}
+		std::map<std::string, int>::iterator it = daysInMonths.find(month);
+		// leap year?
+		if (month == "02")
+		{
+			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+			{
+				// std::cout << "Leap year" << std::endl;
+				if (day > (it->second + 1))
+				{
+					std::cout << "Error: Invalid date." << std::endl;
+					continue ;
+				}
+			}
+			else
+			{
+				// std::cout << "Not a leap year" << std::endl;
+				if (day > (it->second))
+				{
+					std::cout << "Error: Invalid date." << std::endl;
+					continue ;
+				}
+			}
+		}
+		else if (it == daysInMonths.end() || day > it->second)
+		{
+			std::cout << "Error: Invalid date." << std::endl;
+			continue ;
+		}
+
+// rok není dělitelný číslem 4 – rok není přestupný
+// rok je dělitelný číslem 4 a nelze ho vydělit číslem 100 – rok je přestupný
+// rok je dělitelný číslem 100 a nelze ho vydělit číslem 400 – rok není přestupný
+// rok je dělitelný číslem 400 – rok je přestupný
 
 		std::getline(stream, value);
 		// std::cout << "|" << value << "|" << std::endl;
@@ -119,21 +196,18 @@ int BitcoinExchange::LoadInput(char *inputFileName)
 			std::cout << "Error: Number not in <0, 1000> range." << std::endl;
 		else
 		{
-			std::cout << "Amount: " << amount << std::endl;
-			std::cout << "Date(search): |" << date << "|" << std::endl;
-			std::multimap<std::string, double>::const_iterator it = database.find(date);
+			// std::cout << "Amount: " << amount << std::endl;
+			// std::cout << "Date(search): |" << date << "|" << std::endl;
+			std::map<std::string, double>::const_iterator it = database.find(date);
 			if (it == database.end())
-				it = database.upper_bound(date);
-			if (it != database.end() && it != database.begin())
 			{
-				it--;
+				it = database.upper_bound(date);
 				if (it != database.begin())
-					std::cout << "Date(found): " << it->first << ", " << "price: " << it->second << ". Result = " << it->second * amount << std::endl;
+					it--;
 				else
-					std::cout << "Date not in range." << std::endl;
+					std::cout << "Date not found." << std::endl;
 			}
-			else
-				std::cout << "Date not found." << std::endl;
+			std::cout << "Date(found): " << it->first << ", " << "price: " << it->second << ". Result = " << it->second * amount << std::endl;
 		}
 	}
 
