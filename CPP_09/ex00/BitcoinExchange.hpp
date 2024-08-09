@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:35:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/07 18:17:17 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/09 11:45:05 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ class BitcoinExchange
 		void printDatabase(); // for checking
 		int LoadInput(const std::string inputFileName);
 
+		class MissingHeader : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 	private:
 		std::map<std::string, double> database;
 		std::map<std::string, int> daysInMonths;
-
-		std::ifstream* dataCsv;
-		std::ifstream* fin;
 
 		void LoadDaysInMonths();
 		std::ifstream* LoadFile(const std::string filename);

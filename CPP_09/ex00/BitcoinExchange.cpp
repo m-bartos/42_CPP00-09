@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:40:06 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/07 19:31:01 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/09 11:49:16 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,55 +15,36 @@
 BitcoinExchange::BitcoinExchange()
 {
 	this->LoadDaysInMonths();
-	this->fin = NULL;
-	this->dataCsv = NULL;
-};
+}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& refObj) 
 {
 	(void) refObj;
 	this->LoadDaysInMonths();
-	this->fin = NULL;
-	this->dataCsv = NULL;
-};
+}
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& refObj) { (void) refObj; return (*this); };
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& refObj) { (void) refObj; return (*this); }
 
-BitcoinExchange::~BitcoinExchange()
+BitcoinExchange::~BitcoinExchange() {}
+
+std::string trim(const std::string& line)
 {
-	if (this->fin != NULL && this->fin->is_open())
-		this->fin->close();
-	if (this->dataCsv != NULL && this->dataCsv->is_open())
-		this->dataCsv->close();
-	delete this->dataCsv;
-	delete this->fin;
-};
-
-// this is not good - leaking when throwing exception
-// should do it in LoadInput and LoadDB funcs and delete this one
-std::ifstream* BitcoinExchange::LoadFile(const std::string filename)
-{
-	std::ifstream* fin1 = new std::ifstream(filename.c_str());
-	if (!fin1->is_open())
-	{
-		throw std::runtime_error("Cannot open file: " + filename); // problem!
-	}
-	return (fin1);
+	const char* WhiteSpace = " \t\v\r\n";
+	std::size_t start = line.find_first_not_of(WhiteSpace);
+	std::size_t end = line.find_last_not_of(WhiteSpace);
+	return line.substr(start, end - start + 1);
 }
 
 int BitcoinExchange::LoadDB()
 {
-	this->dataCsv = LoadFile("data.csv");
-	if (!this->dataCsv)
-	{ 
-		std::cerr << "Error, could not open DB file." << std::endl; 
-		return (-1); // exit?
-	}
+	std::ifstream dataCsv("data.csv");
+	if (!dataCsv.is_open())
+		throw std::runtime_error("Cannot open file: data.csv");
 
 	std::string line;
 	std::string	date;
 	std::string	value;
-	while (std::getline(*(this->dataCsv), line))
+	while (std::getline((dataCsv), line))
 	{
 		if (line == "date,exchange_rate")
 			continue ;
@@ -74,6 +55,7 @@ int BitcoinExchange::LoadDB()
 		std::getline(stream, value);
 		database.insert(std::make_pair(date, strtod(value.c_str(), NULL)));
 	}
+	dataCsv.close();
 	return (0);
 }
 
@@ -83,14 +65,6 @@ void BitcoinExchange::printDatabase()
 	{
 		std::cout << "|" << it->first << "|" << it->second << "|" << std::endl;
 	}
-}
-
-std::string trim(const std::string& line)
-{
-	const char* WhiteSpace = " \t\v\r\n";
-	std::size_t start = line.find_first_not_of(WhiteSpace);
-	std::size_t end = line.find_last_not_of(WhiteSpace);
-	return line.substr(start, end - start + 1);
 }
 
 void BitcoinExchange::LoadDaysInMonths()
@@ -124,8 +98,7 @@ int BitcoinExchange::CheckHeader(std::ifstream& fin)
 	value = trim (value);
 	if (date != "date" || value != "value")
 	{
-		std::cout << "Header is missing. Add it to the file in format \"date | value\"" << std::endl;
-		return (0);
+		throw MissingHeader();
 	}
 	return (1);
 }
@@ -227,12 +200,14 @@ void BitcoinExchange::FindAndPrint(std::string date, std::string value)
 
 int BitcoinExchange::LoadInput(const std::string inputFileName)
 {
-	this->fin = this->LoadFile(inputFileName);
-	if (this->CheckHeader(*(this->fin)) == 0)
-		return (-1); // exit?
+	std::ifstream fin(inputFileName.c_str());
+	if (!fin.is_open())
+		throw std::runtime_error("Cannot open file: " + inputFileName);
+
+	this->CheckHeader(fin);
 
 	std::string line;
-	while (std::getline(*(this->fin), line))
+	while (std::getline(fin, line))
 	{
 		if (this->CheckLine(line) == 0)
 			continue ;
@@ -253,5 +228,11 @@ int BitcoinExchange::LoadInput(const std::string inputFileName)
 
 		this->FindAndPrint(date, value);
 	}
+	fin.close();
 	return (0);
+}
+
+const char *BitcoinExchange::MissingHeader::what(void) const throw()
+{
+	return ("Header is missing. Add it to the file in format \"date | value\"");
 }
