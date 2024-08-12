@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:21:37 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/09 15:01:54 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/12 10:03:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,18 @@ int	main(int argc, char **argv)
 		std::cerr << "Incorrect input." << std::endl;
 		return (1);
 	}
-	std::cout << argv[0] << std::endl;
+	// std::cout << argv[1] << std::endl;
+	
+	try
+	{
+		RPN rpn;
+		rpn.Calculate(argv[1]);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << '\n';
+	}
+	
 
 
 	return (0);

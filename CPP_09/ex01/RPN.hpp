@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 14:35:29 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/09 15:52:47 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/12 10:28:27 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <stack>
 #include <string>
 #include <exception>
+#include <iostream>
+#include <stdexcept>
+#include <cctype>
 
 class RPN
 {
@@ -28,6 +31,11 @@ class RPN
 		void Calculate(const std::string input);
 
 	private:
+		void CheckInput(const std::string input);
+		void add();
+		void subtract();
+		void multiply();
+		void divide();
 		std::stack<long int> stack;
 };
 
