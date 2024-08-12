@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:21:37 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/12 10:03:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/12 11:57:51 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	main(int argc, char **argv)
 		std::cerr << "Incorrect input." << std::endl;
 		return (1);
 	}
-	// std::cout << argv[1] << std::endl;
-	
+
 	try
 	{
 		RPN rpn;
@@ -31,75 +30,6 @@ int	main(int argc, char **argv)
 	{
 		std::cerr << "Error: " << e.what() << '\n';
 	}
-	
-
 
 	return (0);
 }
-
-
-// #include <gtest/gtest.h>
-// #include <iostream>
-// #include <sstream>
-// #include <string>
-
-// char* g_input_file;
-
-// std::string ReadFile(const std::string& file_path) {
-//     std::ifstream file(file_path);
-//     if (!file.is_open()) {
-//         return "";
-//     }
-//     std::ostringstream oss;
-//     oss << file.rdbuf();
-//     return oss.str();
-// }
-
-// // Test cases
-// TEST(inputTXT, Test1) {
-//     std::ostringstream oss;
-//     std::streambuf* p_cout_buf = std::cout.rdbuf();
-
-//     std::cout.rdbuf(oss.rdbuf());
-
-//     std::cout.rdbuf(p_cout_buf);
-
-//     EXPECT_EQ(oss.str(), "\n");
-// }
-
-// TEST(leapTXT, Test2) {
-//     std::ostringstream oss;
-//     std::streambuf* p_cout_buf = std::cout.rdbuf();
-
-//     std::cout.rdbuf(oss.rdbuf());
-
-// 	BitcoinExchange btcEx;
-// 	btcEx.LoadDB();
-// 	btcEx.LoadInput(g_input_file);
-
-//     std::cout.rdbuf(p_cout_buf);
-
-//     std::string expected_output = ReadFile("leapRESULT.txt");
-//     EXPECT_EQ(oss.str(), expected_output);
-// }
-
-
-// int main(int argc, char **argv)
-// {
-// 	::testing::InitGoogleTest(&argc, argv);
-
-// 	if (argc > 1)
-// 	{
-// 		std::string arg = argv[1];
-//  		g_input_file = argv[1];
-// 		if (arg == "input.txt") {
-// 			// Run only tests in TestSuite1
-// 			::testing::GTEST_FLAG(filter) = "InputTXT.*";
-// 		} else if (arg == "leap.txt") {
-// 			// Run only tests in TestSuite2
-// 			::testing::GTEST_FLAG(filter) = "leapTXT.*";
-// 		}
-// 	}
-// 	return RUN_ALL_TESTS();
-// }
- 
