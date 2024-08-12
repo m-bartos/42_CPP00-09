@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/08/12 11:28:53 by mbartos          ###   ########.fr        #
+#    Updated: 2024/08/12 11:55:23 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ BCYAN =	\033[96m
 NC =	\033[0m
 
 #name
-NAME =		rpn
+NAME =		RPN
 
 #compiler
 CCP =		c++
