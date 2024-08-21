@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/12 17:20:33 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/21 12:21:06 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main (int argc, char** argv)
 
 		sorting.Sort(argc, argv);
 		sorting.PrintNumbersInContainer();
-		sorting.PrintNumbersInPairs();
+		// sorting.PrintNumbersInPairs();
 	}
 	catch(const std::exception& e)
 	{
