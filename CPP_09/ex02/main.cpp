@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 11:57:20 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/26 13:34:46 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int main (int argc, char** argv)
 			throw std::invalid_argument("Invalid input. Not enough arguments.");
 
 		PmergeMe sorting;
-
+		
 		sorting.Sort(argc, argv);
-		std::cout << "Final sorted: " << std::endl;
-		sorting.PrintNumbersInContainer();
+		// std::cout << "Sorted: ";
+		// sorting.PrintNumbersInContainer();
 		// sorting.PrintNumbersInPairs();
 	}
 	catch(const std::exception& e)

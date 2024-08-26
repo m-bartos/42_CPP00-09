@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:16:29 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/21 15:54:10 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/26 13:37:26 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <iomanip>
 #include <climits>
 #include <cstdlib>
 #include <algorithm>

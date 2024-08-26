@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 12:15:35 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/26 13:50:45 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void PmergeMe::PrintNumbersInContainer()
 {
 	for (std::vector<unsigned int>::const_iterator it = numbers.begin(); it != numbers.end(); ++it)
 	{
-		std::cout << *it;
+		std::cout << std::setw(3) << std::right << *it;
 		if (it != numbers.end() - 1)
 			std::cout << ", ";
 	}
@@ -109,21 +109,11 @@ void PmergeMe::SortPairs()
 
 void PmergeMe::InsertHigherNumberFromPairs()
 {
-	std::vector<std::pair<unsigned int, unsigned int> >::iterator itPairs;
-	// std::vector<unsigned int>::iterator itNumbers;
+	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator itPairs;
 
 	numbers.clear();
-
-	// itNumbers = numbers.begin();
-	// *itNumbers = 0;
-	// itNumbers++;
 	for (itPairs = pairs.begin(); itPairs != pairs.end(); ++itPairs)
-	{
 		numbers.push_back(itPairs->first);
-		// itPairs->first = 0;
-		// *(itNumbers + 1) = 0; 
-		// itNumbers += 2;
-	}
 }
 
 // recursion
@@ -167,32 +157,26 @@ void PmergeMe::BuildJacobsthanSequence (int size)
 
 void PmergeMe::InsertRest()
 {
-	// insert first element from pairs and then first element from numbers
-	// std::vector<unsigned int> newNumbers;
-	// newNumbers.push_back(pairs[0].second);
-	// newNumbers.push_back(numbers[0]);
-
 	std::vector<unsigned int>::iterator jacobsthanSequenceIt;
 
 	// std::cout << pairs.size() << std::endl;
 	for (jacobsthanSequenceIt = JacobsthanSequence.begin(); jacobsthanSequenceIt != JacobsthanSequence.end(); ++jacobsthanSequenceIt)
 	{
-		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 		std::vector<unsigned int>::iterator itEnd;
 		std::vector<unsigned int>::iterator itResult;
 		itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
 		itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
-		std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *itEnd << ">" << std::endl;
-		std::cout << "The number will be inserted before value = " << *itResult << std::endl;
-		std::cout << "~~~~~~~~~~~~~~~ Before insertation ~~~~~~~~~~~~~~~~~" << std::endl;
-		PrintNumbersInContainer();
+		// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *itEnd << ">" << std::endl;
+		// std::cout << "The number will be inserted before value = " << *itResult << std::endl;
+		// std::cout << "~~~~~~~~~~~~~~~ Before insertation ~~~~~~~~~~~~~~~~~" << std::endl;
+		// PrintNumbersInContainer();
 		numbers.insert(itResult, pairs[*jacobsthanSequenceIt].second);
-		std::cout << "~~~~~~~~~~~~~~~ After insertation ~~~~~~~~~~~~~~~~~~~" << std::endl;
-		PrintNumbersInContainer();
-		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::cout << std::endl;
+		// std::cout << "~~~~~~~~~~~~~~~ After insertation ~~~~~~~~~~~~~~~~~~~" << std::endl;
+		// PrintNumbersInContainer();
+		// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		// std::cout << std::endl;
 	}
-	// numbers = newNumbers;
 }
 
 void PmergeMe::Sort(int argc, char** argv)
@@ -203,25 +187,28 @@ void PmergeMe::Sort(int argc, char** argv)
 		IsValidNumber(strNumber);
 		AddNumberToContainer(strNumber);
 	}
-	std::cout << "-----------" << std::endl;
-	MakePairs();
-	std::cout << "Pairs made: " << std::endl;
-	PrintNumbersInPairs();
-	BuildJacobsthanSequence(pairs.size());
-	std::cout << "JacobSeq: " << std::endl;
-	PrintJacobsthanSequence();
-	std::cout << "Numbers in pairs sorted: " << std::endl;
-	SortNumbersInPairs();
-	PrintNumbersInPairs();
-	std::cout << "Pairs sorted: " << std::endl;
-	SortPairs();
-	PrintNumbersInPairs();
-	InsertHigherNumberFromPairs();
-	PrintNumbersInPairs();
-	InsertRest();
-	// std::cout << "Jacob: " << GetJacobsthanNumber(4) << std::endl;
+	std::cout << "Before: ";
+	PrintNumbersInContainer();
+	// std::cout << std::endl;
 
-	// PrintNumbersInContainer();
-	// insert lower number from pairs to new vector
-	// insert the higher number by the algorithm
+
+	// std::cout << "-----------" << std::endl;
+	MakePairs();
+	// std::cout << "Pairs made: " << std::endl;
+	// PrintNumbersInPairs();
+	BuildJacobsthanSequence(pairs.size());
+	// std::cout << "JacobSeq: " << std::endl;
+	// PrintJacobsthanSequence();
+	// std::cout << "Numbers in pairs sorted: " << std::endl;
+	SortNumbersInPairs();
+	// PrintNumbersInPairs();
+	SortPairs();
+	// std::cout << "Pairs sorted: " << std::endl;
+	// PrintNumbersInPairs();
+	InsertHigherNumberFromPairs();
+	// PrintNumbersInPairs();
+	InsertRest();
+	std::cout << "After:  ";
+	PrintNumbersInContainer();
+	// std::cout << std::endl;
 }
