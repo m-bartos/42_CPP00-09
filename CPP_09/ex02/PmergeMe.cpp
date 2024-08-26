@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/21 16:15:09 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/26 12:15:35 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ void PmergeMe::AddNumberToContainer(std::string input)
 void PmergeMe::PrintNumbersInContainer()
 {
 	for (std::vector<unsigned int>::const_iterator it = numbers.begin(); it != numbers.end(); ++it)
-		std::cout << *it << std::endl;
+	{
+		std::cout << *it;
+		if (it != numbers.end() - 1)
+			std::cout << ", ";
+	}
+	std::cout << std::endl;
 }
 
 void PmergeMe::PrintJacobsthanSequence()
@@ -115,7 +120,7 @@ void PmergeMe::InsertHigherNumberFromPairs()
 	for (itPairs = pairs.begin(); itPairs != pairs.end(); ++itPairs)
 	{
 		numbers.push_back(itPairs->first);
-		itPairs->first = 0;
+		// itPairs->first = 0;
 		// *(itNumbers + 1) = 0; 
 		// itNumbers += 2;
 	}
@@ -163,12 +168,31 @@ void PmergeMe::BuildJacobsthanSequence (int size)
 void PmergeMe::InsertRest()
 {
 	// insert first element from pairs and then first element from numbers
-	std::vector<unsigned int> newNumbers;
-	newNumbers.push_back(pairs[0].second);
-	newNumbers.push_back(numbers[0]);
+	// std::vector<unsigned int> newNumbers;
+	// newNumbers.push_back(pairs[0].second);
+	// newNumbers.push_back(numbers[0]);
 
+	std::vector<unsigned int>::iterator jacobsthanSequenceIt;
 
-	numbers = newNumbers;
+	// std::cout << pairs.size() << std::endl;
+	for (jacobsthanSequenceIt = JacobsthanSequence.begin(); jacobsthanSequenceIt != JacobsthanSequence.end(); ++jacobsthanSequenceIt)
+	{
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		std::vector<unsigned int>::iterator itEnd;
+		std::vector<unsigned int>::iterator itResult;
+		itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
+		itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
+		std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *itEnd << ">" << std::endl;
+		std::cout << "The number will be inserted before value = " << *itResult << std::endl;
+		std::cout << "~~~~~~~~~~~~~~~ Before insertation ~~~~~~~~~~~~~~~~~" << std::endl;
+		PrintNumbersInContainer();
+		numbers.insert(itResult, pairs[*jacobsthanSequenceIt].second);
+		std::cout << "~~~~~~~~~~~~~~~ After insertation ~~~~~~~~~~~~~~~~~~~" << std::endl;
+		PrintNumbersInContainer();
+		std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+		std::cout << std::endl;
+	}
+	// numbers = newNumbers;
 }
 
 void PmergeMe::Sort(int argc, char** argv)
@@ -196,6 +220,7 @@ void PmergeMe::Sort(int argc, char** argv)
 	PrintNumbersInPairs();
 	InsertRest();
 	// std::cout << "Jacob: " << GetJacobsthanNumber(4) << std::endl;
+
 	// PrintNumbersInContainer();
 	// insert lower number from pairs to new vector
 	// insert the higher number by the algorithm
