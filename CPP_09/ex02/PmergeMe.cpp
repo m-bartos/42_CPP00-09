@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 13:50:45 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/26 14:32:01 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,14 @@ void PmergeMe::MakePairs()
 {
 	size_t i = 0;
 
-	if (numbers.size() % 2 == 0)
+	for ( ; i < numbers.size() - 1; i = i + 2)
 	{
-		for ( ; i < numbers.size(); i = i + 2)
-		{
-			unsigned int a = numbers[i];
-			unsigned int b = numbers[i+1];
-			pairs.push_back(std::make_pair(a, b));
-		}
+		unsigned int a = numbers[i];
+		unsigned int b = numbers[i+1];
+		pairs.push_back(std::make_pair(a, b));
 	}
+	if (numbers.size() % 2 != 0)
+		pairs.push_back(std::make_pair(UINT_MAX, numbers[i]));
 	// numbers.clear();
 }
 
@@ -110,9 +109,17 @@ void PmergeMe::SortPairs()
 void PmergeMe::InsertHigherNumberFromPairs()
 {
 	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator itPairs;
+	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator itPairsEnd;
+	bool odd = false;
 
+	if (numbers.size() % 2 != 0)
+		odd = true;
 	numbers.clear();
-	for (itPairs = pairs.begin(); itPairs != pairs.end(); ++itPairs)
+	if (odd)
+		itPairsEnd = pairs.end() - 1;
+	else
+		itPairsEnd = pairs.end();
+	for (itPairs = pairs.begin(); itPairs != itPairsEnd; ++itPairs)
 		numbers.push_back(itPairs->first);
 }
 
@@ -152,7 +159,6 @@ void PmergeMe::BuildJacobsthanSequence (int size)
 		JacobsthanSequence.push_back(size - 1);
 		size--;
 	}
-	// JacobsthanSequence();
 }
 
 void PmergeMe::InsertRest()
@@ -167,7 +173,7 @@ void PmergeMe::InsertRest()
 		std::vector<unsigned int>::iterator itResult;
 		itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
 		itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
-		// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *itEnd << ">" << std::endl;
+		// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *(itEnd) << ">" << std::endl;
 		// std::cout << "The number will be inserted before value = " << *itResult << std::endl;
 		// std::cout << "~~~~~~~~~~~~~~~ Before insertation ~~~~~~~~~~~~~~~~~" << std::endl;
 		// PrintNumbersInContainer();
@@ -196,6 +202,7 @@ void PmergeMe::Sort(int argc, char** argv)
 	MakePairs();
 	// std::cout << "Pairs made: " << std::endl;
 	// PrintNumbersInPairs();
+	// return;
 	BuildJacobsthanSequence(pairs.size());
 	// std::cout << "JacobSeq: " << std::endl;
 	// PrintJacobsthanSequence();
