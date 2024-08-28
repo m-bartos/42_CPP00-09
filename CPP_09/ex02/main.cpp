@@ -6,13 +6,14 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/28 11:40:24 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:24:58 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <exception>
 #include <iostream>
+#include <ctime>
 
 int main (int argc, char** argv)
 {
@@ -20,13 +21,16 @@ int main (int argc, char** argv)
 	{
 		if (argc < 2)
 			throw std::invalid_argument("Invalid input. Not enough arguments.");
+		{
+			std::cout << "Vector: " << std::endl;
+			PmergeMe<std::vector<unsigned int>, std::vector<std::pair<unsigned int, unsigned int> >  > pmergeVector;
+			pmergeVector.Sort(argc, argv);
+		}
 
-		PmergeMe<std::vector<unsigned int>, std::vector<std::pair<unsigned int, unsigned int> >  > pmergeVector;
-		
-		pmergeVector.Sort(argc, argv);
-		// std::cout << "Sorted: ";
-		// sorting.PrintNumbersInContainer();
-		// sorting.PrintNumbersInPairs();
+		std::cout << std::endl;
+		std::cout << "Deque: " << std::endl;
+		PmergeMe<std::deque<unsigned int>, std::deque<std::pair<unsigned int, unsigned int> >  > pmergeDeque;
+		pmergeDeque.Sort(argc, argv);
 	}
 	catch(const std::exception& e)
 	{

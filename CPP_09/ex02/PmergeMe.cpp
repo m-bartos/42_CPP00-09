@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/28 11:52:22 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/28 12:31:57 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,17 @@ template <typename NumberContainer, typename PairContainer>
 void PmergeMe<NumberContainer, PairContainer>::PrintNumbersInContainer()
 {
 	typename NumberContainer::const_iterator it;
-	
+
+	std::cout << "Before: ";
+	for (it = initialNumbers.begin(); it != initialNumbers.end(); ++it)
+	{
+		std::cout << std::setw(3) << std::right << *it;
+		if (it != initialNumbers.end() - 1)
+			std::cout << ", ";
+	}
+	std::cout << std::endl;
+
+	std::cout << "Before: ";
 	for (it = numbers.begin(); it != numbers.end(); ++it)
 	{
 		std::cout << std::setw(3) << std::right << *it;
@@ -193,8 +203,8 @@ void PmergeMe<NumberContainer, PairContainer>::InsertRest()
 	for (jacobsthanSequenceIt = JacobsthanSequence.begin(); jacobsthanSequenceIt != JacobsthanSequence.end(); ++jacobsthanSequenceIt)
 	{
 		// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-		typename NumberContainer::iterator::iterator itEnd;
-		typename NumberContainer::iterator::iterator itResult;
+		typename NumberContainer::iterator itEnd;
+		typename NumberContainer::iterator itResult;
 		itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
 		itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
 		// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *(itEnd) << ">" << std::endl;
@@ -212,35 +222,28 @@ void PmergeMe<NumberContainer, PairContainer>::InsertRest()
 template <typename NumberContainer, typename PairContainer>
 void PmergeMe<NumberContainer, PairContainer>::Sort(int argc, char** argv)
 {
+	clock_t startTime = clock();
+
 	for (int i = 1; i < argc; ++i)
 	{
 		std::string strNumber = std::string(argv[i]);
 		IsValidNumber(strNumber);
 		AddNumberToContainer(strNumber);
 	}
-	std::cout << "Before: ";
-	PrintNumbersInContainer();
-	// std::cout << std::endl;
-
-
-	// std::cout << "-----------" << std::endl;
+	initialNumbers = numbers;
 	MakePairs();
-	// std::cout << "Pairs made: " << std::endl;
-	// PrintNumbersInPairs();
-	// return;
 	BuildJacobsthanSequence(pairs.size());
-	// std::cout << "JacobSeq: " << std::endl;
-	// PrintJacobsthanSequence();
-	// std::cout << "Numbers in pairs sorted: " << std::endl;
 	SortNumbersInPairs();
-	// PrintNumbersInPairs();
 	SortPairs();
-	// std::cout << "Pairs sorted: " << std::endl;
-	// PrintNumbersInPairs();
 	InsertHigherNumberFromPairs();
-	// PrintNumbersInPairs();
 	InsertRest();
-	std::cout << "After:  ";
+	clock_t endTime = clock();
+	double elapsedTime = double(endTime - startTime) / CLOCKS_PER_SEC * 1e6;
 	PrintNumbersInContainer();
+	std::cout << "Execution Time of " << getTypeName<NumberContainer>() << ": " << elapsedTime << " microseconds" << std::endl;
 	// std::cout << std::endl;
 }
+
+
+template class PmergeMe<std::vector<unsigned int>, std::vector<std::pair<unsigned int, unsigned int> > >;
+template class PmergeMe<std::deque<unsigned int>, std::deque<std::pair<unsigned int, unsigned int> > >;
