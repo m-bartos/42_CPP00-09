@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:16:29 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 13:37:26 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:39:50 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 
 #include <string>
 #include <vector>
+#include <deque>
+#include <utility>
 #include <iostream>
 #include <iomanip>
 #include <climits>
 #include <cstdlib>
 #include <algorithm>
 
+template <typename Container, typename PairContainer>
 class PmergeMe 
 {
 	public:
+		typedef typename Container::value_type ContainerType; // type of container
+
 		PmergeMe();
 		PmergeMe(const PmergeMe&);
 		PmergeMe& operator=(const PmergeMe&);
@@ -46,10 +51,9 @@ class PmergeMe
 		int GetJacobsthanNumber(int index);
 		void BuildJacobsthanSequence (int size);
 	
-
-		std::vector<std::pair<unsigned int, unsigned int> > pairs;
-		std::vector<unsigned int> numbers;
-		std::vector<unsigned int> JacobsthanSequence;
+		PairContainer pairs;
+		Container numbers;
+		Container JacobsthanSequence;
 };
 
 #endif

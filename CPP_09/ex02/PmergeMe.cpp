@@ -6,18 +6,26 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 14:32:01 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:52:22 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {}
-PmergeMe::PmergeMe(const PmergeMe& refObj) { *this = refObj; }
-PmergeMe& PmergeMe::operator=(const PmergeMe& refObj) { (void) refObj; return(*this); }
-PmergeMe::~PmergeMe() {}
+template <typename NumberContainer, typename PairContainer>
+PmergeMe<NumberContainer, PairContainer>::PmergeMe() {}
 
-void PmergeMe::IsValidNumber(std::string input)
+template <typename NumberContainer, typename PairContainer>
+PmergeMe<NumberContainer, PairContainer>::PmergeMe(const PmergeMe<NumberContainer, PairContainer>& refObj) { *this = refObj; }
+
+template <typename NumberContainer, typename PairContainer>
+PmergeMe<NumberContainer, PairContainer>& PmergeMe<NumberContainer, PairContainer>::operator=(const PmergeMe<NumberContainer, PairContainer>& refObj) { (void) refObj; return(*this); }
+
+template <typename NumberContainer, typename PairContainer>
+PmergeMe<NumberContainer, PairContainer>::~PmergeMe() {}
+
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::IsValidNumber(std::string input)
 {
 	size_t i = 0;
 
@@ -39,15 +47,19 @@ void PmergeMe::IsValidNumber(std::string input)
 	}
 }
 
-void PmergeMe::AddNumberToContainer(std::string input)
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::AddNumberToContainer(std::string input)
 {
 	long int number = std::strtol(input.c_str(), NULL, 10);
 	numbers.push_back(static_cast<int>(number));
 }
 
-void PmergeMe::PrintNumbersInContainer()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::PrintNumbersInContainer()
 {
-	for (std::vector<unsigned int>::const_iterator it = numbers.begin(); it != numbers.end(); ++it)
+	typename NumberContainer::const_iterator it;
+	
+	for (it = numbers.begin(); it != numbers.end(); ++it)
 	{
 		std::cout << std::setw(3) << std::right << *it;
 		if (it != numbers.end() - 1)
@@ -56,15 +68,19 @@ void PmergeMe::PrintNumbersInContainer()
 	std::cout << std::endl;
 }
 
-void PmergeMe::PrintJacobsthanSequence()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::PrintJacobsthanSequence()
 {
-	for (std::vector<unsigned int>::const_iterator it = JacobsthanSequence.begin(); it != JacobsthanSequence.end(); ++it)
+	typename NumberContainer::const_iterator it;
+
+	for (it = JacobsthanSequence.begin(); it != JacobsthanSequence.end(); ++it)
 		std::cout << *it << std::endl;
 }
 
-void PmergeMe::PrintNumbersInPairs()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::PrintNumbersInPairs()
 {
-	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator it;
+	typename PairContainer::const_iterator it;
 	// std::cout << "----- Pairs printing -----" << std::endl;
 	for (it = pairs.begin(); it != pairs.end(); ++it)
 	{
@@ -75,7 +91,8 @@ void PmergeMe::PrintNumbersInPairs()
 	std::cout << "--------------------------" << std::endl;
 }
 
-void PmergeMe::MakePairs()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::MakePairs()
 {
 	size_t i = 0;
 
@@ -90,9 +107,10 @@ void PmergeMe::MakePairs()
 	// numbers.clear();
 }
 
-void PmergeMe::SortNumbersInPairs()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::SortNumbersInPairs()
 {
-	std::vector<std::pair<unsigned int, unsigned int> >::iterator it;
+	typename PairContainer::iterator it;
 
 	for (it = pairs.begin(); it != pairs.end(); ++it)
 	{
@@ -101,15 +119,17 @@ void PmergeMe::SortNumbersInPairs()
 	}
 }
 
-void PmergeMe::SortPairs()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::SortPairs()
 {
 	std::sort(pairs.begin(), pairs.end());
 }
 
-void PmergeMe::InsertHigherNumberFromPairs()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::InsertHigherNumberFromPairs()
 {
-	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator itPairs;
-	std::vector<std::pair<unsigned int, unsigned int> >::const_iterator itPairsEnd;
+	typename PairContainer::const_iterator itPairs;
+	typename PairContainer::const_iterator itPairsEnd;
 	bool odd = false;
 
 	if (numbers.size() % 2 != 0)
@@ -124,7 +144,9 @@ void PmergeMe::InsertHigherNumberFromPairs()
 }
 
 // recursion
-int PmergeMe::GetJacobsthanNumber(int index)
+// should be static?
+template <typename NumberContainer, typename PairContainer>
+int PmergeMe<NumberContainer, PairContainer>::GetJacobsthanNumber(int index)
 {
 	if (index == 0 || index == 1)
 		return (1);
@@ -132,7 +154,8 @@ int PmergeMe::GetJacobsthanNumber(int index)
 		return ((2 * GetJacobsthanNumber(index - 2) + GetJacobsthanNumber(index - 1)));
 }
 
-void PmergeMe::BuildJacobsthanSequence (int size)
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::BuildJacobsthanSequence (int size)
 {
 	int i = 0;
 	int num;
@@ -161,16 +184,17 @@ void PmergeMe::BuildJacobsthanSequence (int size)
 	}
 }
 
-void PmergeMe::InsertRest()
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::InsertRest()
 {
-	std::vector<unsigned int>::iterator jacobsthanSequenceIt;
+	typename NumberContainer::iterator jacobsthanSequenceIt;
 
 	// std::cout << pairs.size() << std::endl;
 	for (jacobsthanSequenceIt = JacobsthanSequence.begin(); jacobsthanSequenceIt != JacobsthanSequence.end(); ++jacobsthanSequenceIt)
 	{
 		// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-		std::vector<unsigned int>::iterator itEnd;
-		std::vector<unsigned int>::iterator itResult;
+		typename NumberContainer::iterator::iterator itEnd;
+		typename NumberContainer::iterator::iterator itResult;
 		itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
 		itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
 		// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *(itEnd) << ">" << std::endl;
@@ -185,7 +209,8 @@ void PmergeMe::InsertRest()
 	}
 }
 
-void PmergeMe::Sort(int argc, char** argv)
+template <typename NumberContainer, typename PairContainer>
+void PmergeMe<NumberContainer, PairContainer>::Sort(int argc, char** argv)
 {
 	for (int i = 1; i < argc; ++i)
 	{
