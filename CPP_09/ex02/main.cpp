@@ -6,13 +6,14 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/26 13:34:46 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/28 15:23:38 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PmergeMe.hpp"
 #include <exception>
 #include <iostream>
+
+#include "PmergeMe.hpp"
 
 int main (int argc, char** argv)
 {
@@ -20,13 +21,13 @@ int main (int argc, char** argv)
 	{
 		if (argc < 2)
 			throw std::invalid_argument("Invalid input. Not enough arguments.");
-
-		PmergeMe sorting;
-		
-		sorting.Sort(argc, argv);
-		// std::cout << "Sorted: ";
-		// sorting.PrintNumbersInContainer();
-		// sorting.PrintNumbersInPairs();
+		{
+			PmergeMe<std::vector<unsigned int>, std::vector<std::pair<unsigned int, unsigned int> >  > pmergeVector;
+			pmergeVector.Sort(argc, argv);
+		}
+		std::cout << std::endl;
+		PmergeMe<std::deque<unsigned int>, std::deque<std::pair<unsigned int, unsigned int> >  > pmergeDeque;
+		pmergeDeque.Sort(argc, argv);
 	}
 	catch(const std::exception& e)
 	{
