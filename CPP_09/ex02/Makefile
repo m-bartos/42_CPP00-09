@@ -6,7 +6,7 @@
 #    By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 10:59:06 by mbartos           #+#    #+#              #
-#    Updated: 2024/08/12 12:15:42 by mbartos          ###   ########.fr        #
+#    Updated: 2024/08/28 15:10:03 by mbartos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,29 +21,37 @@ NAME =		PmergeMe
 
 #compiler
 CCP =		c++
-CFLAGS =	-Wall -Wextra -Werror -std=c++98
+# CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-g -Wall -Wextra -Werror -std=c++98
 
 #sources
-SRC =	main.cpp PmergeMe.cpp
+SRC =	main.cpp
 
 #objects
 OBJ_PATH =	obj/
 OBJ =		$(SRC:.cpp=.o)
 OBJS =		$(addprefix $(OBJ_PATH), $(OBJ))
 
+# dependency files
+DEPS =      $(OBJ:.o=.d)
+DEP_PATH =  $(OBJ_PATH)
+
 all: $(NAME)
 
-$(OBJ_PATH)%.o : %.cpp
-	$(CCP) $(CFLAGS) -c $< -o $@
+$(OBJ_PATH)%.o : %.cpp | $(OBJ_PATH)
+	$(CCP) $(CFLAGS) -MMD -MP -c $< -o $@
 
-$(OBJS): | $(OBJ_PATH)
+# Include dependency files
+-include $(OBJS:.o=.d)
+
+# $(OBJS): | $(OBJ_PATH)
 
 $(OBJ_PATH):
-	@mkdir $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJS)
 	@echo "$(BOLD)$(BCYAN)[ Compiling $(NAME)... ]$(NC)"
-	$(CCP) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+	$(CCP) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo "$(BOLD)$(GREEN)[ Program $(NAME) ready! ]$(NC)"
 
 clean:
