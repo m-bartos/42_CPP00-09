@@ -5,7 +5,7 @@ Basics of C++ at 42 Prague.
 * CPP_00 - CPP_07 -> C++ Primer (5th edition 2013) by Stanley B. Lippman, Barbara E. Moo, Josée Lajoie
 * Containers (CPP_08, CPP_09) -> The C++ Standard Library - A Tutorial and Reference by Nicolai M. Josuttis
 * Hash tables - basic functionality [coded from scratch in C](https://www.youtube.com/watch?v=2Ti5yvumFTU&ab_channel=JacobSorber)
-
+* Ford-Johnson algorithm (CPP_09/ex02) - page 184 [The Art of Computer Programming, Vol.3.](https://seriouscomputerist.atariverse.com/media/pdf/book/Art%20of%20Computer%20Programming%20-%20Volume%203%20(Sorting%20&%20Searching).pdf)
 
 
 ## CPP_00
@@ -96,5 +96,36 @@ Containers!
   - containers
 
 * ex02 - Mutated abomination
-  - extending stack containter with iterator
+  - extending stack container with iterator
   - class templates, inheritance
+
+## CPP_09
+Practical usage of containers
+
+* ex00 - Bitcoin exchange
+  - the program takes an input file with several dates and amounts and outputs the value of a given amount of bitcoin on a given date
+  - it uses a CSV database provided by 42 subjects
+  - valid input file must be checked
+  - valid dates (too low, no days in particular month, leap years etc. are handled)
+  - different types of input files are stored in the CPP_09/ex00 folder
+  - map container used
+
+* ex01 - inverted Polish notation
+  - calculator that can take a Polish mathematical expression and calculate the result
+  - using stack containers
+  - example of use:
+```
+$> ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+42
+$> ./RPN "7 7 * 7 -"
+42
+$> ./RPN "1 2 * 2 / 2 * 2 4 - +"
+0
+$> ./RPN "(1 + 1)"
+Error
+$>
+```
+
+* ex02 - PmergeMe
+  - write merge-insert sorting algorithm (Ford-Johnson algorithm)
+  - using vector and deque containers
