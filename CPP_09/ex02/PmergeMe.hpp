@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:16:29 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/30 11:07:43 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:23:20 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ class PmergeMe
 		void Sort(int argc, char** argv)
 		{
 			clock_t startTime = clock();
-
 			for (int i = 1; i < argc; ++i)
 			{
 				std::string strNumber = std::string(argv[i]);
@@ -59,7 +58,6 @@ class PmergeMe
 			double elapsedTime = double(endTime - startTime) / CLOCKS_PER_SEC * 1e6;
 			PrintNumbersInContainer();
 			std::cout << "Execution Time of " << getTypeName<NumberContainer>() << ": " << elapsedTime << " microseconds" << std::endl;
-			// std::cout << std::endl;
 		}
 
 		void PrintNumbersInContainer()
@@ -116,9 +114,6 @@ class PmergeMe
 		{
 			size_t i = 0;
 
-			if (input[i] == '+')
-				i++;
-
 			for( ; i < input.size(); ++i)
 			{
 				if (i > 11)
@@ -130,7 +125,6 @@ class PmergeMe
 					throw std::invalid_argument("Invalid input, number is 0. Only positive unsigned ints required.");
 				if (number > UINT_MAX)
 					throw std::invalid_argument("Invalid input, number bigger than max unsigned int.");
-
 			}
 		}
 
@@ -213,7 +207,11 @@ class PmergeMe
 		{
 			int i = 0;
 			int num;
-
+			if (size == 1)
+			{
+				JacobsthanSequence.push_back(GetJacobsthanNumber(0) - 1);
+				return ;
+			}
 			while (GetJacobsthanNumber(i) < size)
 			{
 				num = GetJacobsthanNumber(i);
