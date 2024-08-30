@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:16:29 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/28 15:12:22 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:07:43 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ template <typename NumberContainer, typename PairContainer>
 class PmergeMe 
 {
 	public:
-		typedef typename NumberContainer::value_type ContainerType; // type of container
-
 		PmergeMe() {}
 
 		PmergeMe(const PmergeMe& refObj) { *this = refObj; }
@@ -77,7 +75,7 @@ class PmergeMe
 			}
 			std::cout << std::endl;
 
-			std::cout << "Before: ";
+			std::cout << "After:  ";
 			for (it = numbers.begin(); it != numbers.end(); ++it)
 			{
 				std::cout << std::setw(3) << std::right << *it;
@@ -109,6 +107,11 @@ class PmergeMe
 		}
 
 	private:
+		PairContainer pairs;
+		NumberContainer initialNumbers;
+		NumberContainer numbers;
+		NumberContainer JacobsthanSequence;
+
 		void IsValidNumber(std::string input)
 		{
 			size_t i = 0;
@@ -120,8 +123,6 @@ class PmergeMe
 			{
 				if (i > 11)
 					throw std::invalid_argument("Invalid input, number bigger than max unsigned int.");
-				// MAKE IT BETTER!!
-				// std::cout << i << "/" << input.size() << " = " << input[i] << std::endl;
 				if (!isdigit(input[i]))
 					throw std::invalid_argument("Invalid input.");
 				long int number = std::strtol(input.c_str(), NULL, 10);
@@ -190,23 +191,13 @@ class PmergeMe
 		{
 			typename NumberContainer::iterator jacobsthanSequenceIt;
 
-			// std::cout << pairs.size() << std::endl;
 			for (jacobsthanSequenceIt = JacobsthanSequence.begin(); jacobsthanSequenceIt != JacobsthanSequence.end(); ++jacobsthanSequenceIt)
 			{
-				// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 				typename NumberContainer::iterator itEnd;
 				typename NumberContainer::iterator itResult;
 				itEnd = std::find(numbers.begin(), numbers.end(), pairs[*jacobsthanSequenceIt].first);
 				itResult = lower_bound(numbers.begin(), itEnd, pairs[*jacobsthanSequenceIt].second);
-				// std::cout << "Number to be inserted from pair[" << (*jacobsthanSequenceIt) + 1 << "] = " << pairs[*jacobsthanSequenceIt].second << ". Searching in <" << *(numbers.begin()) << ", " << *(itEnd) << ">" << std::endl;
-				// std::cout << "The number will be inserted before value = " << *itResult << std::endl;
-				// std::cout << "~~~~~~~~~~~~~~~ Before insertation ~~~~~~~~~~~~~~~~~" << std::endl;
-				// PrintNumbersInContainer();
 				numbers.insert(itResult, pairs[*jacobsthanSequenceIt].second);
-				// std::cout << "~~~~~~~~~~~~~~~ After insertation ~~~~~~~~~~~~~~~~~~~" << std::endl;
-				// PrintNumbersInContainer();
-				// std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
-				// std::cout << std::endl;
 			}
 		}
 
@@ -246,11 +237,6 @@ class PmergeMe
 				size--;
 			}
 		}
-	
-		PairContainer pairs;
-		NumberContainer initialNumbers;
-		NumberContainer numbers;
-		NumberContainer JacobsthanSequence;
 };
 
 #endif
