@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:15:47 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/28 15:11:38 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:10:00 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ std::string getTypeName() {
 // Specializations for known types
 template <>
 std::string getTypeName<std::vector<unsigned int> >() {
-	return "std::vector<unsigned int>";
+	return "std::vector";
 }
 
 template <>
 std::string getTypeName<std::deque<unsigned int> >() {
-	return "std::deque<unsigned int>";
+	return "std::deque";
 }
 
 #endif
