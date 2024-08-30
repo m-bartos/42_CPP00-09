@@ -6,7 +6,7 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 12:15:57 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/28 15:23:38 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/30 11:12:47 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int main (int argc, char** argv)
 			pmergeVector.Sort(argc, argv);
 		}
 		std::cout << std::endl;
-		PmergeMe<std::deque<unsigned int>, std::deque<std::pair<unsigned int, unsigned int> >  > pmergeDeque;
-		pmergeDeque.Sort(argc, argv);
+		{
+			PmergeMe<std::deque<unsigned int>, std::deque<std::pair<unsigned int, unsigned int> >  > pmergeDeque;
+			pmergeDeque.Sort(argc, argv);
+		}
 	}
 	catch(const std::exception& e)
 	{
