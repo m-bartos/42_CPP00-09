@@ -6,12 +6,12 @@
 /*   By: mbartos <mbartos@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 11:35:52 by mbartos           #+#    #+#             */
-/*   Updated: 2024/08/09 11:45:05 by mbartos          ###   ########.fr       */
+/*   Updated: 2024/08/30 10:28:09 by mbartos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITCOINEXCHANGE_HPP
-#define BITCOINTEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <iostream>
 #include <fstream>
